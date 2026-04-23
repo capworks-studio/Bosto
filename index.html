@@ -4,312 +4,397 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fabien BOSTDEDORE — Artisan du Bâtiment</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --cream: #F5F0E8; --cream-2: #EDE6D6; --cream-3: #E4DAC4;
-    --brown: #3D2B1F; --brown-2: #5C4033; --brown-3: #7A5545;
-    --terra: #8B4513; --terra-light: #A0522D;
-    --text: #2C1810; --text-muted: #7A6458;
-    --border: rgba(61,43,31,0.15);
-    --border-strong: rgba(61,43,31,0.3);
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0a08;--black-2:#111110;--black-3:#1a1916;--black-4:#232220;
+  --gold:#C9A84C;--gold-2:#E2C06A;--gold-3:#A88530;--gold-dim:rgba(201,168,76,0.15);
+  --text:#F0EBE0;--text-muted:#8a8070;--text-dim:#5a5448;
+  --border:rgba(201,168,76,0.2);--border-strong:rgba(201,168,76,0.4);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--text);overflow-x:hidden}
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(245,240,232,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); letter-spacing: 0.02em; }
-  .nav-logo strong { text-transform: uppercase; font-weight: 600; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
-  .nav-links a:hover { color: var(--terra); }
+/* TEXTURE OVERLAYS */
+.tex-stone{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-size:300px}
+.tex-grid{background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:60px 60px}
+.tex-dots{background-image:radial-gradient(circle,rgba(201,168,76,0.12) 1px,transparent 1px);background-size:24px 24px}
+.tex-diag{background-image:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,168,76,0.025) 20px,rgba(201,168,76,0.025) 21px)}
 
-  /* HERO */
-  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; }
-  .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 8rem 4rem 5rem; background: var(--cream); position: relative; z-index: 1; }
-  .hero-right { background: var(--brown); position: relative; overflow: hidden; }
-  .hero-right::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px); }
-  .hero-right-content { position: absolute; bottom: 5rem; left: 3rem; right: 3rem; }
-  .hero-tag { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
-  .hero-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--terra); }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 500; line-height: 1.1; margin-bottom: 2rem; color: var(--brown); }
-  .hero h1 em { font-style: italic; color: var(--terra); }
-  .hero-sub { font-size: 0.95rem; color: var(--text-muted); font-weight: 300; max-width: 400px; line-height: 1.8; margin-bottom: 3rem; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 1rem; background: var(--terra); color: var(--cream); padding: 1rem 2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; align-self: flex-start; }
-  .hero-cta:hover { background: var(--terra-light); transform: translateY(-2px); }
-  .hero-stat { color: var(--cream-2); }
-  .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 400; color: var(--cream); display: block; line-height: 1; }
-  .hero-stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-top: 0.3rem; display: block; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(10,10,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold);letter-spacing:0.04em}
+.nav-logo strong{text-transform:uppercase;font-weight:600}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);padding:0.5rem 1.2rem;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s}
+.nav-cta:hover{background:var(--gold-2)}
 
-  /* SECTIONS */
-  section { padding: 6rem 4rem; }
-  .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.75rem; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.2; margin-bottom: 1rem; color: var(--brown); }
-  .section-divider { width: 40px; height: 1px; background: var(--terra); margin-bottom: 3rem; }
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;background:var(--black)}
+.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(201,168,76,0.08) 0%,transparent 70%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:80px 80px}
+.hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:4rem 4rem 4rem 4rem}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.hero-eyebrow-line{width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow span{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:500;line-height:1.05;margin-bottom:1.5rem;color:var(--text)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:0.95rem;color:var(--text-muted);font-weight:300;max-width:420px;line-height:1.8;margin-bottom:3rem}
+.hero-actions{display:flex;gap:1rem;align-items:center}
+.btn-primary{display:inline-flex;align-items:center;gap:0.75rem;background:var(--gold);color:var(--black);padding:1rem 2rem;font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.btn-primary:hover{background:var(--gold-2);transform:translateY(-2px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.75rem;border:1px solid var(--border-strong);color:var(--gold);padding:1rem 1.5rem;font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.btn-secondary:hover{background:var(--gold-dim);border-color:var(--gold)}
+.hero-right{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:4rem}
+.hero-right::before{content:'';position:absolute;inset:0;background:var(--black-2);border-left:1px solid var(--border)}
+.hero-right::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.1) 1px,transparent 1px);background-size:28px 28px}
+.hero-stat-box{position:relative;z-index:1;text-align:center;padding:2rem;border:1px solid var(--border);background:rgba(10,10,8,0.6);backdrop-filter:blur(4px);width:100%;max-width:200px}
+.hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:400;color:var(--gold);line-height:1;display:block}
+.hero-stat-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-top:0.5rem;display:block}
+.hero-bottom{position:relative;z-index:1;border-top:1px solid var(--border);display:flex;background:var(--black-2)}
+.hero-bottom-item{flex:1;padding:1.2rem 2rem;border-right:1px solid var(--border);display:flex;align-items:center;gap:1rem}
+.hero-bottom-item:last-child{border-right:none}
+.hero-bottom-icon{width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.9rem}
+.hero-bottom-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim)}
+.hero-bottom-value{font-size:0.85rem;color:var(--text);font-weight:400}
 
-  /* SERVICES */
-  .services { background: var(--cream-2); }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border: 1px solid var(--border-strong); margin-top: 3rem; }
-  .service-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.3s; }
-  .service-card:hover { background: var(--cream-3); }
-  .service-card:last-child { border-right: none; }
-  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--terra); opacity: 0.3; line-height: 1; margin-bottom: 1rem; }
-  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.75rem; color: var(--brown); }
-  .service-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+/* SECTIONS */
+section{padding:7rem 4rem}
+.section-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem}
+.section-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.section-eyebrow span{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:500;line-height:1.15;color:var(--text);margin-bottom:1rem}
+.section-divider{width:40px;height:1px;background:var(--gold);margin-bottom:3rem}
 
-  /* ABOUT */
-  .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .about-left { padding: 6rem 4rem; background: var(--brown); color: var(--cream); }
-  .about-left .section-title { color: var(--cream); }
-  .about-left .section-label { color: var(--cream-3); opacity: 0.7; }
-  .about-left .section-divider { background: var(--terra); }
-  .about-left p { font-size: 0.95rem; color: rgba(245,240,232,0.7); line-height: 1.8; font-weight: 300; margin-bottom: 1rem; }
-  .about-right { padding: 6rem 4rem; background: var(--cream-2); display: flex; flex-direction: column; justify-content: center; gap: 2rem; }
-  .about-stat { border-left: 2px solid var(--terra); padding-left: 1.5rem; }
-  .about-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 400; color: var(--terra); line-height: 1; }
-  .about-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem; }
+/* SERVICES */
+.services{background:var(--black-2);position:relative;overflow:hidden}
+.services::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border:1px solid var(--border);position:relative;z-index:1}
+.service-card{padding:2.5rem 2rem;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background 0.4s}
+.service-card:last-child{border-right:none}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.service-card:hover{background:rgba(201,168,76,0.04)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);opacity:0.15;line-height:1;margin-bottom:1.5rem;font-weight:400}
+.service-icon-wrap{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.3rem;transition:border-color 0.3s}
+.service-card:hover .service-icon-wrap{border-color:var(--gold)}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;margin-bottom:0.75rem;color:var(--text)}
+.service-card p{font-size:0.83rem;color:var(--text-muted);line-height:1.7;font-weight:300}
 
-  /* ZONE */
-  .zone { background: var(--cream); }
-  .zone-box { display: flex; align-items: center; gap: 3rem; padding: 2.5rem; border: 1px solid var(--border-strong); max-width: 600px; background: var(--cream-2); }
-  .zone-icon { font-size: 2.5rem; flex-shrink: 0; }
-  .zone-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--brown); margin-bottom: 0.5rem; }
-  .zone-box p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+/* ABOUT */
+.about{background:var(--black);position:relative;overflow:hidden}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-text p{font-size:0.92rem;color:var(--text-muted);line-height:1.9;font-weight:300;margin-bottom:1.2rem}
+.about-deco{position:relative}
+.about-deco-box{border:1px solid var(--border);padding:3rem;background:var(--black-2);position:relative;overflow:hidden}
+.about-deco-box::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.about-deco-box::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.07) 1px,transparent 1px);background-size:20px 20px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:2rem;position:relative;z-index:1}
+.about-stat{border-left:2px solid var(--gold);padding-left:1.2rem}
+.about-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:400;color:var(--gold);line-height:1}
+.about-stat-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem}
+.about-quote{position:relative;z-index:1;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--text-muted);line-height:1.6}
 
-  /* AVIS */
-  .avis-section { background: var(--cream-2); }
-  .avis-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-  .voir-tous { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); text-decoration: none; border-bottom: 1px solid var(--terra); padding-bottom: 2px; transition: opacity 0.3s; }
-  .voir-tous:hover { opacity: 0.7; }
-  .avis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-  .avis-card { background: var(--cream); border: 1px solid var(--border); padding: 2rem; }
-  .avis-stars { color: var(--terra); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-  .avis-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); line-height: 1.6; font-style: italic; margin-bottom: 1rem; }
-  .avis-author { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .avis-reponse { margin-top: 1rem; padding: 0.75rem 1rem; background: var(--cream-2); border-left: 2px solid var(--terra); font-size: 0.82rem; color: var(--text-muted); }
-  .avis-reponse strong { color: var(--terra); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
-  .laisser-avis-btn { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 2rem; background: none; border: 1px solid var(--terra); color: var(--terra); padding: 0.85rem 1.8rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.3s; }
-  .laisser-avis-btn:hover { background: var(--terra); color: var(--cream); }
+/* ZONES */
+.zones{background:var(--black-3);position:relative;overflow:hidden}
+.zones::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,168,76,0.02) 30px,rgba(201,168,76,0.02) 31px)}
+.zones-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+.zone-card{background:var(--black-3);padding:2rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:background 0.3s}
+.zone-card:hover{background:var(--black-4)}
+.zone-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.zone-name{font-size:0.9rem;color:var(--text);font-weight:400}
 
-  /* FAQ */
-  .faq { background: var(--cream); }
-  .faq-list { max-width: 700px; margin-top: 2rem; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-question { width: 100%; background: none; border: none; color: var(--text); font-family: 'Jost', sans-serif; font-size: 0.92rem; padding: 1.2rem 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .faq-question:hover { color: var(--terra); }
-  .faq-arrow { color: var(--terra); transition: transform 0.3s; font-size: 1.2rem; line-height: 1; }
-  .faq-answer { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
-  .faq-item.open .faq-arrow { transform: rotate(45deg); }
-  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.2rem; }
+/* AVIS CAROUSEL */
+.avis-section{background:var(--black-2);position:relative;overflow:hidden}
+.avis-section::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.avis-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.rating-display{text-align:right}
+.rating-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1}
+.rating-stars{color:var(--gold);font-size:0.9rem;letter-spacing:0.1em}
+.rating-count{font-size:0.72rem;color:var(--text-muted)}
+.carousel-wrap{position:relative;overflow:hidden}
+.carousel-track{display:flex;gap:1.5rem;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.avis-card{min-width:calc(33.333% - 1rem);background:var(--black-3);border:1px solid var(--border);padding:2rem;flex-shrink:0;position:relative;overflow:hidden}
+.avis-card::before{content:'\201C';position:absolute;top:-0.5rem;left:1.2rem;font-family:'Cormorant Garamond',serif;font-size:6rem;color:var(--gold);opacity:0.08;line-height:1}
+.avis-stars{color:var(--gold);font-size:0.85rem;margin-bottom:1rem;letter-spacing:0.1em}
+.avis-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:1.5rem}
+.avis-footer{display:flex;justify-content:space-between;align-items:center}
+.avis-author{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.avis-date{font-size:0.68rem;color:var(--text-dim)}
+.avis-reponse{margin-top:1rem;padding:0.75rem 1rem;border-left:2px solid var(--gold);background:rgba(201,168,76,0.04);font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+.avis-reponse strong{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.3rem}
+.carousel-nav{display:flex;gap:0.75rem;margin-top:2rem;justify-content:space-between;align-items:center}
+.carousel-dots{display:flex;gap:0.5rem}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--text-dim);cursor:pointer;transition:all 0.3s}
+.carousel-dot.active{background:var(--gold);width:20px;border-radius:3px}
+.carousel-arrows{display:flex;gap:0.75rem}
+.carousel-btn{width:44px;height:44px;border:1px solid var(--border);background:none;color:var(--gold);cursor:pointer;font-size:1.1rem;transition:all 0.3s;display:flex;align-items:center;justify-content:center}
+.carousel-btn:hover{border-color:var(--gold);background:var(--gold-dim)}
+.avis-cta{margin-top:2.5rem;display:flex;gap:1rem;align-items:center}
+.voir-tous{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:all 0.3s}
+.voir-tous:hover{color:var(--gold);border-color:var(--gold)}
 
-  /* DEVIS */
-  .devis-section { background: var(--brown); }
-  .devis-section .section-label { color: var(--cream-3); opacity: 0.7; }
-  .devis-section .section-title { color: var(--cream); }
-  .devis-section .section-divider { background: var(--terra); }
-  .devis-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; margin-top: 3rem; }
-  .devis-info { display: flex; flex-direction: column; gap: 1.5rem; }
-  .devis-item { display: flex; gap: 1.2rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(245,240,232,0.1); }
-  .devis-item:last-child { border-bottom: none; }
-  .devis-icon { width: 36px; height: 36px; border: 1px solid rgba(245,240,232,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
-  .devis-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-bottom: 0.3rem; }
-  .devis-item-value { font-size: 0.95rem; color: var(--cream); }
-  .devis-item-value a { color: var(--cream); text-decoration: none; transition: color 0.3s; }
-  .devis-item-value a:hover { color: var(--terra-light); }
+/* FAQ */
+.faq{background:var(--black);position:relative}
+.faq-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:6rem;align-items:start}
+.faq-list{margin-top:0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-question{width:100%;background:none;border:none;color:var(--text);font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:400;padding:1.3rem 0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color 0.3s}
+.faq-question:hover{color:var(--gold)}
+.faq-arrow{color:var(--gold);font-size:1.3rem;flex-shrink:0;transition:transform 0.3s;line-height:1}
+.faq-answer{font-size:0.82rem;color:var(--text-muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s}
+.faq-item.open .faq-arrow{transform:rotate(45deg)}
+.faq-item.open .faq-answer{max-height:250px;padding-bottom:1.2rem}
+.faq-deco{position:sticky;top:100px}
+.faq-deco-box{border:1px solid var(--border);padding:2.5rem;background:var(--black-2);position:relative;overflow:hidden}
+.faq-deco-box::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.08) 1px,transparent 1px);background-size:22px 22px}
+.faq-contact-item{display:flex;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border);position:relative;z-index:1}
+.faq-contact-item:last-child{border-bottom:none}
+.faq-contact-icon{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.9rem}
+.faq-contact-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim)}
+.faq-contact-value{font-size:0.88rem;color:var(--text)}
+.faq-contact-value a{color:var(--text);text-decoration:none;transition:color 0.3s}
+.faq-contact-value a:hover{color:var(--gold)}
 
-  .devis-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .fg { display: flex; flex-direction: column; gap: 0.35rem; }
-  .fl { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.5); }
-  .fi { background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.12); color: var(--cream); padding: 0.8rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300; outline: none; transition: border-color 0.3s; resize: none; width: 100%; }
-  .fi:focus { border-color: var(--terra-light); }
-  .fi option { background: var(--brown-2); }
-  .fi::placeholder { color: rgba(245,240,232,0.25); }
-  textarea.fi { height: 100px; }
-  .devis-submit { background: var(--terra); border: none; color: var(--cream); padding: 1rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, transform 0.2s; align-self: flex-start; }
-  .devis-submit:hover:not(:disabled) { background: var(--terra-light); transform: translateY(-1px); }
-  .devis-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-  .form-feedback { font-size: 0.82rem; padding: 0.75rem 1rem; display: none; }
-  .form-feedback.success { background: rgba(45,106,79,0.25); border: 1px solid rgba(82,183,136,0.4); color: #7ec8a0; display: block; }
-  .form-feedback.error { background: rgba(155,34,38,0.2); border: 1px solid rgba(224,122,122,0.4); color: #e07a7a; display: block; }
-  .form-feedback.warning { background: rgba(139,69,19,0.2); border: 1px solid rgba(139,69,19,0.4); color: var(--terra-light); display: block; }
+/* DEVIS */
+.devis{background:var(--black-2);position:relative;overflow:hidden}
+.devis::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.devis::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.02) 1px,transparent 1px);background-size:40px 40px}
+.devis-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;position:relative;z-index:1}
+.devis-intro p{font-size:0.88rem;color:var(--text-muted);line-height:1.8;font-weight:300;margin-bottom:2rem}
+.devis-badge{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--gold);padding:0.6rem 1.2rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold)}
+.devis-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:0.4rem}
+.fg.full{grid-column:1/-1}
+.fl{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim)}
+.fi{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);color:var(--text);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:300;outline:none;transition:border-color 0.3s;width:100%}
+.fi:focus{border-color:var(--gold)}
+.fi::placeholder{color:var(--text-dim)}
+.fi option{background:var(--black-2)}
+textarea.fi{height:110px;resize:none}
+.form-feedback{font-size:0.8rem;padding:0.75rem 1rem;display:none;grid-column:1/-1}
+.form-feedback.success{background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);color:#52b788;display:block}
+.form-feedback.error{background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);color:#e07a7a;display:block}
+.form-feedback.warning{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:var(--gold);display:block}
+.devis-submit{grid-column:1/-1;background:var(--gold);border:none;color:var(--black);padding:1.1rem 2.5rem;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;align-self:flex-start;justify-self:flex-start}
+.devis-submit:hover:not(:disabled){background:var(--gold-2);transform:translateY(-2px)}
+.devis-submit:disabled{opacity:0.5;cursor:not-allowed}
 
-  /* FOOTER */
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: var(--cream-2); }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--brown); }
-  .footer-logo strong { text-transform: uppercase; }
-  footer p { font-size: 0.75rem; color: var(--text-muted); }
-  .footer-admin { font-size: 0.7rem; color: var(--text-muted); text-decoration: none; opacity: 0.3; transition: opacity 0.3s; }
-  .footer-admin:hover { opacity: 1; color: var(--terra); }
+/* FOOTER */
+footer{background:var(--black);border-top:1px solid var(--border);padding:3rem 4rem}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)}
+.footer-brand .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:0.75rem}
+.footer-logo strong{text-transform:uppercase;font-weight:600}
+.footer-brand p{font-size:0.78rem;color:var(--text-muted);line-height:1.7}
+.footer-col-title{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem}
+.footer-links{display:flex;flex-direction:column;gap:0.5rem}
+.footer-links a{font-size:0.82rem;color:var(--text-muted);text-decoration:none;transition:color 0.3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+footer .copy{font-size:0.72rem;color:var(--text-dim)}
+.footer-admin{font-size:0.68rem;color:var(--text-dim);text-decoration:none;opacity:0.3;transition:opacity 0.3s}
+.footer-admin:hover{opacity:1;color:var(--gold)}
 
-  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
 
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { min-height: 250px; }
-    .hero-left { padding: 7rem 1.5rem 3rem; }
-    section { padding: 4rem 1.5rem; }
-    .about-wrap { grid-template-columns: 1fr; }
-    .about-left, .about-right { padding: 4rem 1.5rem; }
-    .devis-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .form-row-2 { grid-template-columns: 1fr; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
-  }
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links,.nav-cta{display:none}
+  .hero-content{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:3rem 1.5rem}
+  .hero-bottom{flex-direction:column}
+  .hero-bottom-item{border-right:none;border-bottom:1px solid var(--border)}
+  section{padding:4rem 1.5rem}
+  .about-inner,.faq-inner,.devis-inner{grid-template-columns:1fr;gap:3rem}
+  .services-grid{grid-template-columns:1fr}
+  .service-card{border-right:none;border-bottom:1px solid var(--border)}
+  .avis-card{min-width:calc(100% - 0px)}
+  .devis-form{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Fabien <strong>BOSTDEDORE</strong></div>
+  <div class="nav-logo" id="navLogo">Fabien <strong>BOSTDEDORE</strong></div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">À propos</a></li>
     <li><a href="#avis">Avis</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#devis">Devis</a></li>
+    <li><a href="#faq">Contact</a></li>
+    <li><a href="#devis" class="nav-cta">Devis</a></li>
   </ul>
 </nav>
 
 <section class="hero">
-  <div class="hero-left fade-up">
-    <div class="hero-tag">Artisan du Bâtiment — Bouches-du-Rhône</div>
-    <h1 id="heroTitre">L'artisan de confiance pour tous vos <em>travaux</em></h1>
-    <p class="hero-sub" id="heroSousTitre">Construction, rénovation, installation — un savoir-faire transmis avec passion dans les Bouches-du-Rhône.</p>
-    <a href="#devis" class="hero-cta">Demander un devis →</a>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-left fade-up">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><span id="heroEyebrow">Artisan du Bâtiment — Bouches-du-Rhône</span></div>
+      <h1 id="heroTitre">L'artisan de confiance pour tous vos <em>travaux</em></h1>
+      <p class="hero-sub" id="heroSub">Construction, rénovation, installation — un savoir-faire transmis avec passion dans les Bouches-du-Rhône.</p>
+      <div class="hero-actions">
+        <a href="#devis" class="btn-primary">Demander un devis →</a>
+        <a href="#services" class="btn-secondary">Nos services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-box fade-up" id="stat1"><span class="hero-stat-num">15+</span><span class="hero-stat-label">Années d'expérience</span></div>
+      <div class="hero-stat-box fade-up" id="stat2"><span class="hero-stat-num">500+</span><span class="hero-stat-label">Chantiers réalisés</span></div>
+      <div class="hero-stat-box fade-up" id="stat3"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Satisfaction client</span></div>
+    </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-right-content">
-      <div class="hero-stat">
-        <span class="hero-stat-num">13</span>
-        <span class="hero-stat-label">Bouches-du-Rhône</span>
+  <div class="hero-bottom">
+    <div class="hero-bottom-item"><div class="hero-bottom-icon">📞</div><div><div class="hero-bottom-label">Téléphone</div><div class="hero-bottom-value" id="heroTel"><a href="tel:0628550995" style="color:inherit;text-decoration:none">06 28 55 09 95</a></div></div></div>
+    <div class="hero-bottom-item"><div class="hero-bottom-icon">✉️</div><div><div class="hero-bottom-label">Email</div><div class="hero-bottom-value" id="heroEmail"><a href="mailto:fab710@gmail.com" style="color:inherit;text-decoration:none">fab710@gmail.com</a></div></div></div>
+    <div class="hero-bottom-item"><div class="hero-bottom-icon">🕐</div><div><div class="hero-bottom-label">Disponibilité</div><div class="hero-bottom-value" id="heroDispo">Lun – Sam, 8h – 19h</div></div></div>
+    <div class="hero-bottom-item"><div class="hero-bottom-icon">📍</div><div><div class="hero-bottom-label">Zone principale</div><div class="hero-bottom-value" id="heroZone">Bouches-du-Rhône (13)</div></div></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header fade-up">
+    <div>
+      <div class="section-eyebrow"><span>Ce que je fais</span></div>
+      <h2 class="section-title">Mes services</h2>
+      <div class="section-divider"></div>
+    </div>
+  </div>
+  <div class="services-grid fade-up" id="servicesGrid">
+    <div class="service-card"><div class="service-num">01</div><div class="service-icon-wrap">🏗️</div><h3>Construction</h3><p>Gros œuvre, maçonnerie, fondations et élévation de murs.</p></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-icon-wrap">🔨</div><h3>Rénovation</h3><p>Rénovation intérieure et extérieure, rafraîchissement de façade.</p></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-icon-wrap">🔧</div><h3>Installation</h3><p>Pose et installation d'équipements, aménagements intérieurs.</p></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-icon-wrap">🏠</div><h3>Travaux à domicile</h3><p>Petits et grands travaux chez vous, interventions rapides.</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text fade-up">
+      <div class="section-eyebrow"><span>À propos</span></div>
+      <h2 class="section-title">Un artisan passionné à votre service</h2>
+      <div class="section-divider"></div>
+      <p id="aboutTexte">Passionné par mon métier depuis de nombreuses années, j'interviens sur tous types de chantiers avec le même niveau d'exigence et de professionnalisme.</p>
+      <a href="#devis" class="btn-primary" style="margin-top:2rem">Prendre contact →</a>
+    </div>
+    <div class="about-deco fade-up">
+      <div class="about-deco-box">
+        <div class="about-stats" id="aboutStats">
+          <div class="about-stat"><div class="about-stat-num">15+</div><div class="about-stat-label">Années d'expérience</div></div>
+          <div class="about-stat"><div class="about-stat-num">500+</div><div class="about-stat-label">Chantiers réalisés</div></div>
+          <div class="about-stat"><div class="about-stat-num">100%</div><div class="about-stat-label">Satisfaction client</div></div>
+          <div class="about-stat"><div class="about-stat-num">13</div><div class="about-stat-label">Département</div></div>
+        </div>
+        <div class="about-quote">"Le travail bien fait, c'est ma signature."</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="services" id="services">
+<section class="zones" id="zones">
   <div class="fade-up">
-    <p class="section-label">Ce que je fais</p>
-    <h2 class="section-title">Mes services</h2>
+    <div class="section-eyebrow"><span>Déplacement</span></div>
+    <h2 class="section-title">Zones d'intervention</h2>
     <div class="section-divider"></div>
-  </div>
-  <div class="services-grid fade-up" id="servicesGrid">
-    <div class="service-card"><div class="service-num">01</div><h3>Construction</h3><p>Gros œuvre, maçonnerie, fondations et élévation de murs.</p></div>
-    <div class="service-card"><div class="service-num">02</div><h3>Rénovation</h3><p>Rénovation intérieure et extérieure, rafraîchissement de façade.</p></div>
-    <div class="service-card"><div class="service-num">03</div><h3>Installation</h3><p>Pose et installation d'équipements, aménagements intérieurs.</p></div>
-    <div class="service-card"><div class="service-num">04</div><h3>Travaux à domicile</h3><p>Petits et grands travaux chez vous, interventions rapides.</p></div>
-  </div>
-</section>
-
-<div class="about-wrap" id="about">
-  <div class="about-left fade-up">
-    <p class="section-label">À propos</p>
-    <h2 class="section-title">Un artisan passionné dans les Bouches-du-Rhône</h2>
-    <div class="section-divider"></div>
-    <p id="aboutTexte">Passionné par mon métier depuis de nombreuses années, j'interviens sur tous types de chantiers avec le même niveau d'exigence et de professionnalisme.</p>
-  </div>
-  <div class="about-right fade-up">
-    <div class="about-stat"><div class="about-stat-num">100%</div><div class="about-stat-label">Fait main</div></div>
-    <div class="about-stat"><div class="about-stat-num">13</div><div class="about-stat-label">Département couvert</div></div>
-    <div class="about-stat"><div class="about-stat-num">∞</div><div class="about-stat-label">Engagement client</div></div>
-  </div>
-</div>
-
-<section class="zone" id="zone">
-  <div class="fade-up">
-    <p class="section-label">Déplacement</p>
-    <h2 class="section-title">Zone d'intervention</h2>
-    <div class="section-divider"></div>
-    <div class="zone-box">
-      <div class="zone-icon">📍</div>
-      <div>
-        <h3 id="zoneTitle">Bouches-du-Rhône (13)</h3>
-        <p>J'interviens dans tout le département des Bouches-du-Rhône et ses alentours. Contactez-moi pour vérifier votre commune.</p>
-      </div>
+    <div class="zones-grid" id="zonesGrid">
+      <div class="zone-card"><div class="zone-dot"></div><div class="zone-name">Bouches-du-Rhône (13)</div></div>
     </div>
   </div>
 </section>
 
 <section class="avis-section" id="avis">
-  <div class="fade-up">
-    <div class="avis-header">
-      <div>
-        <p class="section-label">Témoignages</p>
-        <h2 class="section-title">Ce que disent mes clients</h2>
-        <div class="section-divider"></div>
+  <div class="avis-header fade-up">
+    <div>
+      <div class="section-eyebrow"><span>Témoignages</span></div>
+      <h2 class="section-title">Ce que disent nos clients</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="rating-display" id="ratingDisplay" style="display:none">
+      <div class="rating-num" id="ratingNum">5.0</div>
+      <div class="rating-stars" id="ratingStars">★★★★★</div>
+      <div class="rating-count" id="ratingCount">0 avis</div>
+    </div>
+  </div>
+  <div class="carousel-wrap fade-up">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="avis-card" style="min-width:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.88rem">Chargement des avis...</div>
+    </div>
+    <div class="carousel-nav">
+      <div class="carousel-dots" id="carouselDots"></div>
+      <div class="carousel-arrows">
+        <button class="carousel-btn" onclick="prevSlide()">←</button>
+        <button class="carousel-btn" onclick="nextSlide()">→</button>
       </div>
-      <a href="avis.html" class="voir-tous">Voir tous les avis →</a>
     </div>
-    <div class="avis-grid" id="avisGrid">
-      <div style="color:var(--text-muted);font-size:0.88rem">Chargement des avis...</div>
-    </div>
-    <a href="avis.html" class="laisser-avis-btn">Laisser un avis ✦</a>
+  </div>
+  <div class="avis-cta fade-up">
+    <a href="#devis" class="btn-primary">Devenir client →</a>
+    <a href="avis.html" class="voir-tous">Laisser un avis / Voir tous les avis →</a>
   </div>
 </section>
 
 <section class="faq" id="faq">
-  <div class="fade-up">
-    <p class="section-label">Questions fréquentes</p>
-    <h2 class="section-title">FAQ</h2>
-    <div class="section-divider"></div>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-question">Comment se passe un devis ? <span class="faq-arrow">+</span></button><div class="faq-answer">Suite à votre demande, je vous contacte pour convenir d'un rendez-vous sur place. Le devis est établi après visite et vous est remis par écrit.</div></div>
-      <div class="faq-item"><button class="faq-question">Quels sont vos délais d'intervention ? <span class="faq-arrow">+</span></button><div class="faq-answer">Je m'engage à vous répondre sous 24h et à intervenir dans les meilleurs délais selon la nature des travaux.</div></div>
-      <div class="faq-item"><button class="faq-question">Intervenez-vous hors du 13 ? <span class="faq-arrow">+</span></button><div class="faq-answer">J'interviens principalement dans les Bouches-du-Rhône, mais des déplacements dans les départements voisins sont possibles selon le projet.</div></div>
-      <div class="faq-item"><button class="faq-question">Quels types de travaux prenez-vous en charge ? <span class="faq-arrow">+</span></button><div class="faq-answer">Tous types de travaux manuels : construction, rénovation, installation, maçonnerie, pose de carrelage, plâtrerie, et bien plus.</div></div>
+  <div class="faq-inner">
+    <div class="fade-up">
+      <div class="section-eyebrow"><span>Questions fréquentes</span></div>
+      <h2 class="section-title">FAQ</h2>
+      <div class="section-divider"></div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item"><button class="faq-question">Comment se passe un devis ? <span class="faq-arrow">+</span></button><div class="faq-answer">Suite à votre demande, je vous contacte pour convenir d'un rendez-vous sur place. Le devis est établi après visite et vous est remis par écrit.</div></div>
+        <div class="faq-item"><button class="faq-question">Quels sont vos délais d'intervention ? <span class="faq-arrow">+</span></button><div class="faq-answer">Je m'engage à vous répondre sous 24h et à intervenir dans les meilleurs délais selon la nature des travaux.</div></div>
+        <div class="faq-item"><button class="faq-question">Intervenez-vous hors de votre zone ? <span class="faq-arrow">+</span></button><div class="faq-answer">Des déplacements dans les départements voisins sont possibles selon le projet. Contactez-moi pour en discuter.</div></div>
+      </div>
+    </div>
+    <div class="faq-deco fade-up">
+      <div class="faq-deco-box">
+        <div class="faq-contact-item"><div class="faq-contact-icon">📞</div><div><div class="faq-contact-label">Téléphone</div><div class="faq-contact-value"><a href="tel:0628550995" id="faqTel">06 28 55 09 95</a></div></div></div>
+        <div class="faq-contact-item"><div class="faq-contact-icon">✉️</div><div><div class="faq-contact-label">Email</div><div class="faq-contact-value"><a href="mailto:fab710@gmail.com" id="faqEmail">fab710@gmail.com</a></div></div></div>
+        <div class="faq-contact-item"><div class="faq-contact-icon">🕐</div><div><div class="faq-contact-label">Disponibilité</div><div class="faq-contact-value" id="faqDispo">Lun – Sam, 8h – 19h</div></div></div>
+        <div style="margin-top:2rem;position:relative;z-index:1"><a href="#devis" class="btn-primary" style="width:100%;justify-content:center">Demander un devis →</a></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="devis-section" id="devis">
-  <div class="fade-up">
-    <p class="section-label">Me contacter</p>
-    <h2 class="section-title">Demander un devis</h2>
-    <div class="section-divider"></div>
-  </div>
-  <div class="devis-grid">
-    <div class="devis-info fade-up">
-      <div class="devis-item"><div class="devis-icon">📞</div><div><div class="devis-item-label">Téléphone</div><div class="devis-item-value"><a href="tel:0628550995">06 28 55 09 95</a></div></div></div>
-      <div class="devis-item"><div class="devis-icon">✉️</div><div><div class="devis-item-label">Email</div><div class="devis-item-value"><a href="mailto:fab710@gmail.com">fab710@gmail.com</a></div></div></div>
-      <div class="devis-item"><div class="devis-icon">📍</div><div><div class="devis-item-label">Zone</div><div class="devis-item-value" id="contactZone">Bouches-du-Rhône (13)</div></div></div>
-      <div class="devis-item"><div class="devis-icon">🕐</div><div><div class="devis-item-label">Disponibilité</div><div class="devis-item-value" id="contactDispo">Lun – Sam, 8h – 19h</div></div></div>
+<section class="devis" id="devis">
+  <div class="devis-inner">
+    <div class="devis-intro fade-up">
+      <div class="section-eyebrow"><span>Me contacter</span></div>
+      <h2 class="section-title">Demander un devis</h2>
+      <div class="section-divider"></div>
+      <p>Décrivez votre projet en détail pour recevoir un devis personnalisé. Je vous recontacte sous 24h pour convenir d'un rendez-vous sur place.</p>
+      <div class="devis-badge">📋 Devis sur rendez-vous</div>
     </div>
     <div class="fade-up">
       <form class="devis-form" id="devisForm">
-        <div class="form-row-2">
-          <div class="fg"><label class="fl">Nom complet *</label><input type="text" class="fi" id="nom" required></div>
-          <div class="fg"><label class="fl">Téléphone</label><input type="tel" class="fi" id="telephone"></div>
+        <div class="fg"><label class="fl">Nom complet *</label><input type="text" class="fi" id="nom" required placeholder="Jean Dupont"></div>
+        <div class="fg"><label class="fl">Téléphone</label><input type="tel" class="fi" id="telephone" placeholder="06 XX XX XX XX"></div>
+        <div class="fg full"><label class="fl">Type de travaux *</label>
+          <select class="fi" id="type_travaux" required><option value="">Sélectionnez...</option><option>Construction</option><option>Rénovation</option><option>Installation</option><option>Travaux à domicile</option><option>Autre</option></select>
         </div>
-        <div class="fg"><label class="fl">Type de travaux *</label>
-          <select class="fi" id="type_travaux" required>
-            <option value="">Sélectionnez...</option>
-            <option>Construction</option><option>Rénovation</option>
-            <option>Installation</option><option>Travaux à domicile</option><option>Autre</option>
-          </select>
+        <div class="fg"><label class="fl">Zone d'intervention</label>
+          <select class="fi" id="zone"><option value="">Sélectionnez...</option></select>
         </div>
-        <div class="form-row-2">
-          <div class="fg"><label class="fl">Surface estimée (m²)</label><input type="text" class="fi" id="surface" placeholder="Ex: 80 m²"></div>
-          <div class="fg"><label class="fl">Budget approximatif</label>
-            <select class="fi" id="budget">
-              <option value="">Non défini</option>
-              <option>Moins de 1 000 €</option><option>1 000 – 5 000 €</option>
-              <option>5 000 – 15 000 €</option><option>15 000 – 50 000 €</option>
-              <option>Plus de 50 000 €</option>
-            </select>
-          </div>
+        <div class="fg"><label class="fl">Surface estimée (m²)</label><input type="text" class="fi" id="surface" placeholder="Ex: 80 m²"></div>
+        <div class="fg"><label class="fl">Budget approximatif</label>
+          <select class="fi" id="budget"><option value="">Non défini</option><option>Moins de 1 000 €</option><option>1 000 – 5 000 €</option><option>5 000 – 15 000 €</option><option>15 000 – 50 000 €</option><option>Plus de 50 000 €</option></select>
         </div>
         <div class="fg"><label class="fl">Urgence</label>
-          <select class="fi" id="urgence">
-            <option value="">Non urgent</option>
-            <option>Dans le mois</option><option>Dans les 3 mois</option>
-            <option>Dans les 6 mois</option><option>Flexible</option>
-          </select>
+          <select class="fi" id="urgence"><option value="">Non urgent</option><option>Dans le mois</option><option>Dans les 3 mois</option><option>Dans les 6 mois</option><option>Flexible</option></select>
         </div>
-        <div class="fg"><label class="fl">Description du projet *</label><textarea class="fi" id="message" required placeholder="Décrivez vos travaux, contraintes, accès..."></textarea></div>
+        <div class="fg full"><label class="fl">Description du projet *</label><textarea class="fi" id="message" required placeholder="Décrivez vos travaux, contraintes, accès au chantier..."></textarea></div>
         <div class="form-feedback" id="formFeedback"></div>
         <button type="submit" class="devis-submit" id="submitBtn">Envoyer la demande →</button>
       </form>
@@ -318,14 +403,38 @@
 </section>
 
 <footer>
-  <div class="footer-logo">Fabien <strong>BOSTDEDORE</strong></div>
-  <p>Artisan du Bâtiment — Bouches-du-Rhône</p>
-  <p>© 2026</p>
-  <a href="admin.html" class="footer-admin">Admin</a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo" id="footerLogo">Fabien <strong>BOSTDEDORE</strong></div>
+      <p id="footerDesc">Artisan du Bâtiment — Bouches-du-Rhône</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#about">À propos</a>
+        <a href="#avis">Avis clients</a>
+        <a href="avis.html">Laisser un avis</a>
+        <a href="#devis">Devis</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-links">
+        <a href="tel:0628550995" id="footerTel">06 28 55 09 95</a>
+        <a href="mailto:fab710@gmail.com" id="footerEmail">fab710@gmail.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="copy">© 2026 — Fabien BOSTDEDORE. Tous droits réservés.</span>
+    <a href="admin.html" class="footer-admin">Admin</a>
+  </div>
 </footer>
 
 <script>
 const API = "https://bostdedore-api.capkychannel.workers.dev";
+let cfg = {}, avisData = [], carouselIndex = 0, carouselTimer;
 
 async function getFingerprint() {
   const data = [navigator.userAgent, navigator.language, screen.width, screen.height, screen.colorDepth, navigator.hardwareConcurrency, navigator.platform, Intl.DateTimeFormat().resolvedOptions().timeZone].join('|');
@@ -333,48 +442,157 @@ async function getFingerprint() {
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('').slice(0,32);
 }
 
-async function loadContent() {
+async function loadConfig() {
   try {
-    const res = await fetch(`${API}/site-content`);
-    const c = await res.json();
-    if (c.hero_sous_titre) document.getElementById('heroSousTitre').textContent = c.hero_sous_titre;
-    if (c.about_texte) document.getElementById('aboutTexte').innerHTML = c.about_texte;
-    if (c.disponibilites) document.getElementById('contactDispo').textContent = c.disponibilites;
-    if (c.zone) { document.getElementById('contactZone').textContent = c.zone; document.getElementById('zoneTitle').textContent = c.zone; }
-    if (c.services?.length) {
-      document.getElementById('servicesGrid').innerHTML = c.services.map((s, i) => `<div class="service-card"><div class="service-num">0${i+1}</div><h3>${s.titre}</h3><p>${s.texte}</p></div>`).join('');
-    }
-  } catch(e) { console.warn('Contenu non chargé', e); }
+    const res = await fetch(`${API}/config`);
+    cfg = await res.json();
+    applyConfig();
+  } catch(e) { console.warn('Config non chargée', e); }
+}
+
+function applyConfig() {
+  const nom = cfg.nom_entreprise || 'Fabien BOSTDEDORE';
+  // Nom
+  document.getElementById('navLogo').innerHTML = nom.includes('BOSTDEDORE') ? `Fabien <strong>BOSTDEDORE</strong>` : nom;
+  document.getElementById('footerLogo').innerHTML = nom.includes('BOSTDEDORE') ? `Fabien <strong>BOSTDEDORE</strong>` : nom;
+  // Hero
+  if (cfg.slogan) document.getElementById('heroTitre').innerHTML = cfg.slogan.replace(/(travaux|bâtiment|artisan)/i, '<em>$1</em>');
+  if (cfg.description_hero) document.getElementById('heroSub').textContent = cfg.description_hero;
+  if (cfg.telephone) {
+    document.getElementById('heroTel').innerHTML = `<a href="tel:${cfg.telephone.replace(/\s/g,'')}" style="color:inherit;text-decoration:none">${cfg.telephone}</a>`;
+    document.getElementById('faqTel').textContent = cfg.telephone;
+    document.getElementById('faqTel').href = `tel:${cfg.telephone.replace(/\s/g,'')}`;
+    document.getElementById('footerTel').textContent = cfg.telephone;
+    document.getElementById('footerTel').href = `tel:${cfg.telephone.replace(/\s/g,'')}`;
+  }
+  if (cfg.email) {
+    document.getElementById('heroEmail').innerHTML = `<a href="mailto:${cfg.email}" style="color:inherit;text-decoration:none">${cfg.email}</a>`;
+    document.getElementById('faqEmail').textContent = cfg.email;
+    document.getElementById('faqEmail').href = `mailto:${cfg.email}`;
+    document.getElementById('footerEmail').textContent = cfg.email;
+    document.getElementById('footerEmail').href = `mailto:${cfg.email}`;
+  }
+  if (cfg.disponibilites) {
+    document.getElementById('heroDispo').textContent = cfg.disponibilites;
+    document.getElementById('faqDispo').textContent = cfg.disponibilites;
+  }
+  // Zones
+  const zones = cfg.zones || [];
+  if (zones.length) {
+    document.getElementById('heroZone').textContent = zones[0];
+    document.getElementById('zonesGrid').innerHTML = zones.map(z => `<div class="zone-card"><div class="zone-dot"></div><div class="zone-name">${esc(z)}</div></div>`).join('');
+    const zoneSelect = document.getElementById('zone');
+    zoneSelect.innerHTML = '<option value="">Toute la zone</option>' + zones.map(z => `<option value="${esc(z)}">${esc(z)}</option>`).join('');
+  }
+  // Services
+  if (cfg.services?.length) {
+    document.getElementById('servicesGrid').innerHTML = cfg.services.map((s, i) => `
+      <div class="service-card">
+        <div class="service-num">0${i+1}</div>
+        <div class="service-icon-wrap">${s.icon}</div>
+        <h3>${esc(s.titre)}</h3>
+        <p>${esc(s.texte)}</p>
+      </div>`).join('');
+  }
+  // About
+  if (cfg.about) document.getElementById('aboutTexte').innerHTML = cfg.about;
+  // Stats
+  if (cfg.stats?.length) {
+    document.getElementById('aboutStats').innerHTML = cfg.stats.map(s => `<div class="about-stat"><div class="about-stat-num">${esc(s.valeur)}</div><div class="about-stat-label">${esc(s.label)}</div></div>`).join('');
+    // Hero stats
+    cfg.stats.slice(0,3).forEach((s, i) => {
+      const el = document.getElementById(`stat${i+1}`);
+      if (el) { el.querySelector('.hero-stat-num').textContent = s.valeur; el.querySelector('.hero-stat-label').textContent = s.label; }
+    });
+  }
+  // FAQ
+  if (cfg.faq?.length) {
+    document.getElementById('faqList').innerHTML = cfg.faq.map(f => `
+      <div class="faq-item">
+        <button class="faq-question">${esc(f.question)} <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">${esc(f.reponse)}</div>
+      </div>`).join('');
+    initFaq();
+  }
+  // Footer desc
+  if (cfg.zones?.length) document.getElementById('footerDesc').textContent = `Artisan du Bâtiment — ${cfg.zones[0]}`;
 }
 
 async function loadAvis() {
   try {
     const res = await fetch(`${API}/avis`);
-    const all = await res.json();
-    const top = all.filter(a => a.mis_en_avant).slice(0,3).concat(all.filter(a => !a.mis_en_avant)).slice(0,3);
-    const grid = document.getElementById('avisGrid');
-    if (!top.length) { grid.innerHTML = '<div style="color:var(--text-muted);font-size:0.88rem">Soyez le premier à laisser un avis !</div>'; return; }
-    grid.innerHTML = top.map(a => `
-      <div class="avis-card">
-        <div class="avis-stars">${'★'.repeat(a.etoiles)}${'☆'.repeat(5-a.etoiles)}</div>
-        <p class="avis-text">"${esc(a.texte)}"</p>
-        <div class="avis-author">— ${esc(a.nom)}</div>
-        ${a.reponse ? `<div class="avis-reponse"><strong>Réponse de Fabien</strong>${esc(a.reponse)}</div>` : ''}
-      </div>`).join('');
+    avisData = await res.json();
+    renderCarousel();
+    renderRating();
   } catch(e) { console.warn('Avis non chargés', e); }
 }
 
+function renderRating() {
+  if (!avisData.length) return;
+  const avg = (avisData.reduce((s, a) => s + a.etoiles, 0) / avisData.length).toFixed(1);
+  document.getElementById('ratingDisplay').style.display = 'block';
+  document.getElementById('ratingNum').textContent = avg;
+  document.getElementById('ratingStars').textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
+  document.getElementById('ratingCount').textContent = `${avisData.length} avis`;
+}
+
+function renderCarousel() {
+  const track = document.getElementById('carouselTrack');
+  const dots = document.getElementById('carouselDots');
+  if (!avisData.length) {
+    track.innerHTML = '<div class="avis-card" style="min-width:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.88rem">Soyez le premier à laisser un avis !</div>';
+    return;
+  }
+  track.innerHTML = avisData.map(a => `
+    <div class="avis-card">
+      <div class="avis-stars">${'★'.repeat(a.etoiles)}${'☆'.repeat(5-a.etoiles)}</div>
+      <p class="avis-text">"${esc(a.texte)}"</p>
+      <div class="avis-footer">
+        <div class="avis-author">— ${esc(a.nom)}</div>
+        <div class="avis-date">${fmtDate(a.date)}</div>
+      </div>
+      ${a.reponse ? `<div class="avis-reponse"><strong>Réponse de Fabien</strong>${esc(a.reponse)}</div>` : ''}
+    </div>`).join('');
+  dots.innerHTML = avisData.map((_, i) => `<div class="carousel-dot ${i===0?'active':''}" onclick="goToSlide(${i})"></div>`).join('');
+  updateCarousel();
+  startCarousel();
+}
+
+function updateCarousel() {
+  const cards = document.querySelectorAll('.avis-card');
+  if (!cards.length) return;
+  const perView = window.innerWidth > 900 ? 3 : 1;
+  const maxIndex = Math.max(0, avisData.length - perView);
+  carouselIndex = Math.min(carouselIndex, maxIndex);
+  const cardW = cards[0].offsetWidth + 24;
+  document.getElementById('carouselTrack').style.transform = `translateX(-${carouselIndex * cardW}px)`;
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+}
+
+function nextSlide() { carouselIndex = (carouselIndex + 1) % Math.max(1, avisData.length); updateCarousel(); resetCarousel(); }
+function prevSlide() { carouselIndex = (carouselIndex - 1 + avisData.length) % Math.max(1, avisData.length); updateCarousel(); resetCarousel(); }
+function goToSlide(i) { carouselIndex = i; updateCarousel(); resetCarousel(); }
+function startCarousel() { carouselTimer = setInterval(nextSlide, 4000); }
+function resetCarousel() { clearInterval(carouselTimer); startCarousel(); }
+window.addEventListener('resize', updateCarousel);
+
+function initFaq() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement, wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+}
+
+// Scroll observer
 const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement, wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
+initFaq();
 
+// Formulaire
 document.getElementById('devisForm').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
@@ -387,6 +605,7 @@ document.getElementById('devisForm').addEventListener('submit', async e => {
       nom: document.getElementById('nom').value.trim(),
       telephone: document.getElementById('telephone').value.trim(),
       type_travaux: document.getElementById('type_travaux').value,
+      zone: document.getElementById('zone').value,
       surface: document.getElementById('surface').value.trim(),
       budget: document.getElementById('budget').value,
       urgence: document.getElementById('urgence').value,
@@ -402,14 +621,15 @@ document.getElementById('devisForm').addEventListener('submit', async e => {
       btn.disabled = false; btn.textContent = 'Envoyer la demande →';
     } else { throw new Error(); }
   } catch {
-    feedback.className = 'form-feedback error'; feedback.textContent = '✗ Erreur. Appelez directement au 06 28 55 09 95.';
+    feedback.className = 'form-feedback error'; feedback.textContent = '✗ Erreur. Appelez directement.';
     btn.disabled = false; btn.textContent = 'Envoyer la demande →';
   }
 });
 
+function fmtDate(iso) { return new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }); }
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-loadContent(); loadAvis();
+loadConfig(); loadAvis();
 </script>
 </body>
 </html>

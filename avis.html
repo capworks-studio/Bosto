@@ -4,127 +4,141 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Avis clients — Fabien BOSTDEDORE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root { --cream: #F5F0E8; --cream-2: #EDE6D6; --cream-3: #E4DAC4; --brown: #3D2B1F; --brown-2: #5C4033; --terra: #8B4513; --terra-light: #A0522D; --text: #2C1810; --text-muted: #7A6458; --border: rgba(61,43,31,0.15); --border-strong: rgba(61,43,31,0.3); }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(245,240,232,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); }
-  .nav-logo strong { text-transform: uppercase; font-weight: 600; }
-  .nav-back { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
-  .nav-back:hover { color: var(--terra); }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a08;--black-2:#111110;--black-3:#1a1916;--gold:#C9A84C;--gold-2:#E2C06A;--gold-3:#A88530;--gold-dim:rgba(201,168,76,0.15);--text:#F0EBE0;--text-muted:#8a8070;--text-dim:#5a5448;--border:rgba(201,168,76,0.2);--border-strong:rgba(201,168,76,0.4)}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--text)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(10,10,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold)}
+.nav-logo strong{text-transform:uppercase;font-weight:600}
+.nav-back{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;border:1px solid var(--border);padding:0.5rem 1rem}
+.nav-back:hover{color:var(--gold);border-color:var(--gold)}
 
-  .page-hero { padding: 8rem 4rem 4rem; background: var(--cream-2); border-bottom: 1px solid var(--border); }
-  .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.75rem; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; color: var(--brown); margin-bottom: 1rem; }
-  .section-divider { width: 40px; height: 1px; background: var(--terra); margin-bottom: 1.5rem; }
-  .page-sub { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
+.page-hero{padding:8rem 4rem 4rem;background:var(--black-2);position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.06) 1px,transparent 1px);background-size:30px 30px}
+.section-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem}
+.section-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.section-eyebrow span{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;color:var(--text);margin-bottom:0.75rem;position:relative;z-index:1}
+.section-divider{width:40px;height:1px;background:var(--gold);margin-bottom:1rem}
+.page-sub{font-size:0.85rem;color:var(--text-muted);font-weight:300;position:relative;z-index:1}
 
-  /* FORM AVIS */
-  .avis-form-section { padding: 4rem; background: var(--brown); }
-  .avis-form-section .section-label { color: var(--cream-3); opacity: 0.7; }
-  .avis-form-section .section-title { color: var(--cream); font-size: 1.8rem; }
-  .avis-form-section .section-divider { background: var(--terra); }
-  .avis-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-  .fg { display: flex; flex-direction: column; gap: 0.35rem; }
-  .fg.full { grid-column: 1 / -1; }
-  .fl { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.5); }
-  .fi { background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.12); color: var(--cream); padding: 0.8rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.3s; width: 100%; }
-  .fi:focus { border-color: var(--terra-light); }
-  .fi::placeholder { color: rgba(245,240,232,0.25); }
-  textarea.fi { height: 100px; resize: none; }
-  .star-rating { display: flex; gap: 0.5rem; }
-  .star-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: rgba(245,240,232,0.2); transition: color 0.2s; }
-  .star-btn.active, .star-btn:hover { color: var(--terra-light); }
-  .submit-avis { background: var(--terra); border: none; color: var(--cream); padding: 1rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-  .submit-avis:hover:not(:disabled) { background: var(--terra-light); }
-  .submit-avis:disabled { opacity: 0.5; cursor: not-allowed; }
-  .form-feedback { font-size: 0.82rem; padding: 0.75rem 1rem; display: none; grid-column: 1/-1; }
-  .form-feedback.success { background: rgba(45,106,79,0.25); border: 1px solid rgba(82,183,136,0.4); color: #7ec8a0; display: block; }
-  .form-feedback.error { background: rgba(155,34,38,0.2); border: 1px solid rgba(224,122,122,0.4); color: #e07a7a; display: block; }
-  .form-feedback.warning { background: rgba(139,69,19,0.2); border: 1px solid rgba(139,69,19,0.4); color: var(--terra-light); display: block; }
+.form-section{padding:5rem 4rem;background:var(--black-3);position:relative;overflow:hidden}
+.form-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.form-section::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.02) 1px,transparent 1px);background-size:40px 40px}
+.form-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;position:relative;z-index:1}
+.form-intro h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500;color:var(--text);margin-bottom:1rem}
+.form-intro p{font-size:0.85rem;color:var(--text-muted);line-height:1.8;font-weight:300}
+.avis-form{display:flex;flex-direction:column;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:0.4rem}
+.fl{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim)}
+.fi{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);color:var(--text);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s;width:100%}
+.fi:focus{border-color:var(--gold)}
+.fi::placeholder{color:var(--text-dim)}
+textarea.fi{height:100px;resize:none}
+.star-rating{display:flex;gap:0.5rem}
+.star-btn{background:none;border:none;font-size:1.8rem;cursor:pointer;color:rgba(201,168,76,0.2);transition:color 0.2s;line-height:1}
+.star-btn.active{color:var(--gold)}
+.form-feedback{font-size:0.8rem;padding:0.75rem 1rem;display:none}
+.form-feedback.success{background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);color:#52b788;display:block}
+.form-feedback.error{background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);color:#e07a7a;display:block}
+.form-feedback.warning{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:var(--gold);display:block}
+.submit-btn{background:var(--gold);border:none;color:var(--black);padding:1rem 2rem;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;align-self:flex-start}
+.submit-btn:hover:not(:disabled){background:var(--gold-2)}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed}
 
-  /* LISTE AVIS */
-  .avis-list-section { padding: 4rem; }
-  .filters { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .filter-btn { background: none; border: 1px solid var(--border-strong); color: var(--text-muted); padding: 0.5rem 1.2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-  .filter-btn.active, .filter-btn:hover { border-color: var(--terra); color: var(--terra); }
-  .avis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-  .avis-card { background: var(--cream-2); border: 1px solid var(--border); padding: 2rem; }
-  .avis-stars { color: var(--terra); font-size: 0.85rem; margin-bottom: 1rem; }
-  .avis-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); line-height: 1.6; font-style: italic; margin-bottom: 1rem; }
-  .avis-meta { display: flex; justify-content: space-between; align-items: center; }
-  .avis-author { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .avis-date { font-size: 0.72rem; color: var(--text-muted); }
-  .avis-reponse { margin-top: 1rem; padding: 0.75rem 1rem; background: var(--cream); border-left: 2px solid var(--terra); font-size: 0.82rem; color: var(--text-muted); }
-  .avis-reponse strong { color: var(--terra); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
-  .empty { text-align: center; padding: 4rem; color: var(--text-muted); font-size: 0.9rem; grid-column: 1/-1; }
+.list-section{padding:5rem 4rem;background:var(--black)}
+.list-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.filters{display:flex;gap:0.75rem;flex-wrap:wrap}
+.filter-btn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:0.45rem 1.1rem;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.avis-count{font-size:0.78rem;color:var(--text-dim)}
+.avis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.avis-card{background:var(--black-2);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.3s}
+.avis-card:hover{border-color:var(--border-strong)}
+.avis-card::before{content:'\201C';position:absolute;top:-0.5rem;left:1rem;font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:0.06;line-height:1}
+.avis-stars{color:var(--gold);font-size:0.85rem;margin-bottom:0.75rem;letter-spacing:0.1em}
+.avis-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:1.2rem}
+.avis-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:1rem}
+.avis-author{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.avis-date{font-size:0.68rem;color:var(--text-dim)}
+.avis-reponse{margin-top:1rem;padding:0.75rem 1rem;border-left:2px solid var(--gold);background:rgba(201,168,76,0.04);font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+.avis-reponse strong{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.3rem}
+.empty{text-align:center;padding:4rem;color:var(--text-muted);font-size:0.88rem;grid-column:1/-1}
 
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--cream-2); }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--brown); }
-  .footer-logo strong { text-transform: uppercase; }
-  footer p { font-size: 0.75rem; color: var(--text-muted); }
+footer{padding:2rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--black-2);flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold)}
+.footer-logo strong{text-transform:uppercase;font-weight:600}
+footer p{font-size:0.72rem;color:var(--text-dim)}
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .page-hero, .avis-form-section, .avis-list-section { padding: 4rem 1.5rem; }
-    .page-hero { padding-top: 7rem; }
-    .avis-form { grid-template-columns: 1fr; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; }
-  }
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .page-hero,.form-section,.list-section{padding-left:1.5rem;padding-right:1.5rem}
+  .page-hero{padding-top:7rem}
+  .form-inner{grid-template-columns:1fr;gap:3rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Fabien <strong>BOSTDEDORE</strong></div>
-  <a href="index.html" class="nav-back">← Retour au site</a>
+  <div class="nav-logo" id="navLogo">Fabien <strong>BOSTDEDORE</strong></div>
+  <a href="index.html" class="nav-back">← Retour</a>
 </nav>
 
 <div class="page-hero">
-  <p class="section-label">Témoignages</p>
+  <div class="section-eyebrow"><span>Témoignages</span></div>
   <h1 class="section-title">Avis de nos clients</h1>
   <div class="section-divider"></div>
-  <p class="page-sub">Tous les avis sont vérifiés et publiés après modération.</p>
+  <p class="page-sub">Tous les avis sont vérifiés et publiés après modération par notre équipe.</p>
 </div>
 
-<section class="avis-form-section">
-  <p class="section-label">Votre expérience</p>
-  <h2 class="section-title">Laisser un avis</h2>
-  <div class="section-divider"></div>
-  <form class="avis-form" id="avisForm">
-    <div class="fg"><label class="fl">Votre nom *</label><input type="text" class="fi" id="av_nom" required placeholder="Jean Dupont"></div>
-    <div class="fg">
-      <label class="fl">Note *</label>
-      <div class="star-rating" id="starRating">
-        <button type="button" class="star-btn" data-val="1">★</button>
-        <button type="button" class="star-btn" data-val="2">★</button>
-        <button type="button" class="star-btn" data-val="3">★</button>
-        <button type="button" class="star-btn" data-val="4">★</button>
-        <button type="button" class="star-btn" data-val="5">★</button>
-      </div>
+<section class="form-section">
+  <div class="form-inner">
+    <div class="form-intro">
+      <div class="section-eyebrow"><span>Votre expérience</span></div>
+      <h2>Laisser un avis</h2>
+      <div style="width:40px;height:1px;background:var(--gold);margin:1rem 0 1.5rem"></div>
+      <p>Vous avez fait appel à nos services ? Partagez votre expérience pour aider d'autres clients à faire leur choix.</p>
     </div>
-    <div class="fg full"><label class="fl">Votre avis *</label><textarea class="fi" id="av_texte" required placeholder="Partagez votre expérience avec Fabien BOSTDEDORE..."></textarea></div>
-    <div class="form-feedback" id="avisFeedback"></div>
-    <div class="fg"><button type="submit" class="submit-avis" id="avisBtn">Soumettre mon avis →</button></div>
-  </form>
+    <form class="avis-form" id="avisForm">
+      <div class="fg"><label class="fl">Votre nom *</label><input type="text" class="fi" id="av_nom" required placeholder="Jean Dupont"></div>
+      <div class="fg">
+        <label class="fl">Note *</label>
+        <div class="star-rating" id="starRating">
+          <button type="button" class="star-btn" data-val="1">★</button>
+          <button type="button" class="star-btn" data-val="2">★</button>
+          <button type="button" class="star-btn" data-val="3">★</button>
+          <button type="button" class="star-btn" data-val="4">★</button>
+          <button type="button" class="star-btn" data-val="5">★</button>
+        </div>
+      </div>
+      <div class="fg"><label class="fl">Votre avis *</label><textarea class="fi" id="av_texte" required placeholder="Partagez votre expérience..."></textarea></div>
+      <div class="form-feedback" id="avisFeedback"></div>
+      <button type="submit" class="submit-btn" id="avisBtn">Soumettre mon avis →</button>
+    </form>
+  </div>
 </section>
 
-<section class="avis-list-section">
-  <div class="filters">
-    <button class="filter-btn active" onclick="setFilter(0, this)">Tous</button>
-    <button class="filter-btn" onclick="setFilter(5, this)">★★★★★</button>
-    <button class="filter-btn" onclick="setFilter(4, this)">★★★★</button>
-    <button class="filter-btn" onclick="setFilter(3, this)">★★★</button>
+<section class="list-section">
+  <div class="list-header">
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter(0,this)">Tous</button>
+      <button class="filter-btn" onclick="setFilter(5,this)">★★★★★</button>
+      <button class="filter-btn" onclick="setFilter(4,this)">★★★★</button>
+      <button class="filter-btn" onclick="setFilter(3,this)">★★★ et moins</button>
+    </div>
+    <div class="avis-count" id="avisCount"></div>
   </div>
   <div class="avis-grid" id="avisGrid"><div class="empty">Chargement...</div></div>
 </section>
 
 <footer>
-  <div class="footer-logo">Fabien <strong>BOSTDEDORE</strong></div>
-  <p>Artisan du Bâtiment — Bouches-du-Rhône</p>
+  <div class="footer-logo" id="footerLogo">Fabien <strong>BOSTDEDORE</strong></div>
+  <p>Artisan du Bâtiment</p>
   <p>© 2026</p>
 </footer>
 
@@ -138,20 +152,25 @@ async function getFingerprint() {
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('').slice(0,32);
 }
 
-// Étoiles
+async function loadConfig() {
+  try {
+    const res = await fetch(`${API}/config`);
+    const cfg = await res.json();
+    if (cfg.nom_entreprise) {
+      const nom = cfg.nom_entreprise;
+      document.getElementById('navLogo').innerHTML = nom.includes('BOSTDEDORE') ? `Fabien <strong>BOSTDEDORE</strong>` : nom;
+      document.getElementById('footerLogo').innerHTML = nom.includes('BOSTDEDORE') ? `Fabien <strong>BOSTDEDORE</strong>` : nom;
+      document.title = `Avis clients — ${nom}`;
+    }
+  } catch(e) {}
+}
+
 document.querySelectorAll('.star-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    selectedStars = parseInt(btn.dataset.val);
-    document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('active', i < selectedStars));
-  });
-  btn.addEventListener('mouseenter', () => {
-    const val = parseInt(btn.dataset.val);
-    document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('active', i < val));
-  });
-  btn.addEventListener('mouseleave', () => {
-    document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('active', i < selectedStars));
-  });
+  btn.addEventListener('click', () => { selectedStars = parseInt(btn.dataset.val); updateStars(selectedStars); });
+  btn.addEventListener('mouseenter', () => updateStars(parseInt(btn.dataset.val)));
+  btn.addEventListener('mouseleave', () => updateStars(selectedStars));
 });
+function updateStars(n) { document.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('active', i < n)); }
 
 document.getElementById('avisForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -166,8 +185,7 @@ document.getElementById('avisForm').addEventListener('submit', async e => {
     const data = await res.json();
     if (data.success) {
       feedback.className = 'form-feedback success'; feedback.textContent = '✓ Merci ! Votre avis sera publié après modération.';
-      e.target.reset(); selectedStars = 0; document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
-      btn.textContent = 'Avis envoyé';
+      e.target.reset(); selectedStars = 0; updateStars(0); btn.textContent = 'Avis envoyé';
     } else if (data.blocked) {
       feedback.className = 'form-feedback warning'; feedback.textContent = '⚠ Vous avez déjà soumis un avis.';
       btn.disabled = false; btn.textContent = 'Soumettre mon avis →';
@@ -194,10 +212,10 @@ function setFilter(stars, btn) {
 }
 
 function renderAvis() {
-  const filtered = currentFilter ? allAvis.filter(a => a.etoiles === currentFilter) : allAvis;
-  const grid = document.getElementById('avisGrid');
-  if (!filtered.length) { grid.innerHTML = '<div class="empty">Aucun avis pour cette note.</div>'; return; }
-  grid.innerHTML = filtered.map(a => `
+  let filtered = currentFilter === 3 ? allAvis.filter(a => a.etoiles <= 3) : currentFilter ? allAvis.filter(a => a.etoiles === currentFilter) : allAvis;
+  document.getElementById('avisCount').textContent = `${filtered.length} avis`;
+  if (!filtered.length) { document.getElementById('avisGrid').innerHTML = '<div class="empty">Aucun avis pour cette sélection.</div>'; return; }
+  document.getElementById('avisGrid').innerHTML = filtered.map(a => `
     <div class="avis-card">
       <div class="avis-stars">${'★'.repeat(a.etoiles)}${'☆'.repeat(5-a.etoiles)}</div>
       <p class="avis-text">"${esc(a.texte)}"</p>
@@ -205,14 +223,14 @@ function renderAvis() {
         <div class="avis-author">— ${esc(a.nom)}</div>
         <div class="avis-date">${fmtDate(a.date)}</div>
       </div>
-      ${a.reponse ? `<div class="avis-reponse"><strong>Réponse de Fabien</strong>${esc(a.reponse)}</div>` : ''}
+      ${a.reponse ? `<div class="avis-reponse"><strong>Réponse</strong>${esc(a.reponse)}</div>` : ''}
     </div>`).join('');
 }
 
-function fmtDate(iso) { return new Date(iso).toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' }); }
+function fmtDate(iso) { return new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }); }
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-loadAvis();
+loadConfig(); loadAvis();
 </script>
 </body>
 </html>

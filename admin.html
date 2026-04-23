@@ -3,144 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — Fabien BOSTDEDORE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Admin — BOSTDEDORE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root { --cream: #F5F0E8; --cream-2: #EDE6D6; --cream-3: #E4DAC4; --brown: #3D2B1F; --brown-2: #5C4033; --terra: #8B4513; --terra-light: #A0522D; --text: #2C1810; --text-muted: #7A6458; --border: rgba(61,43,31,0.15); --border-strong: rgba(61,43,31,0.3); }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a08;--black-2:#111110;--black-3:#1a1916;--black-4:#232220;--gold:#C9A84C;--gold-2:#E2C06A;--gold-dim:rgba(201,168,76,0.12);--text:#F0EBE0;--text-muted:#8a8070;--text-dim:#5a5448;--border:rgba(201,168,76,0.2);--border-strong:rgba(201,168,76,0.4)}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--text);min-height:100vh}
 
-  /* LOGIN */
-  .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--cream-2); }
-  .login-box { width: 100%; max-width: 380px; border: 1px solid var(--border-strong); padding: 3rem 2.5rem; background: var(--cream); }
-  .login-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--brown); margin-bottom: 0.3rem; }
-  .login-logo strong { text-transform: uppercase; font-weight: 600; }
-  .login-sub { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 2.5rem; }
-  .login-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.4rem; }
-  .login-input { width: 100%; background: var(--cream-2); border: 1px solid var(--border-strong); color: var(--text); padding: 0.85rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.92rem; outline: none; transition: border-color 0.3s; margin-bottom: 1.5rem; }
-  .login-input:focus { border-color: var(--terra); }
-  .login-btn { width: 100%; background: var(--terra); border: none; color: var(--cream); padding: 1rem; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-  .login-btn:hover { background: var(--terra-light); }
-  .login-error { font-size: 0.82rem; color: #c0392b; margin-top: 1rem; display: none; }
-  .login-back { display: inline-block; margin-top: 1.2rem; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; }
-  .login-back:hover { color: var(--terra); }
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--black-2);background-image:radial-gradient(circle,rgba(201,168,76,0.06) 1px,transparent 1px);background-size:28px 28px}
+.login-box{width:100%;max-width:380px;border:1px solid var(--border);padding:3rem 2.5rem;background:var(--black)}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:0.3rem}
+.login-logo strong{text-transform:uppercase;font-weight:600}
+.login-sub{font-size:0.75rem;color:var(--text-muted);margin-bottom:2.5rem;letter-spacing:0.05em}
+.login-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem}
+.login-input{width:100%;background:var(--black-2);border:1px solid var(--border);color:var(--text);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;margin-bottom:1.5rem}
+.login-input:focus{border-color:var(--gold)}
+.login-btn{width:100%;background:var(--gold);border:none;color:var(--black);padding:1rem;font-family:'Jost',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.3s}
+.login-btn:hover{background:var(--gold-2)}
+.login-error{font-size:0.8rem;color:#e07a7a;margin-top:1rem;display:none}
+.login-back{display:inline-block;margin-top:1.2rem;font-size:0.72rem;color:var(--text-dim);text-decoration:none;transition:color 0.3s}
+.login-back:hover{color:var(--gold)}
 
-  /* ADMIN */
-  .admin-wrap { display: none; }
-  .admin-header { position: sticky; top: 0; z-index: 10; background: rgba(245,240,232,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
-  .admin-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--brown); }
-  .admin-logo strong { text-transform: uppercase; font-weight: 600; }
-  .header-btns { display: flex; gap: 0.75rem; }
-  .hbtn { background: none; border: 1px solid var(--border-strong); color: var(--text-muted); padding: 0.5rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; }
-  .hbtn:hover { border-color: var(--terra); color: var(--terra); }
+/* ADMIN */
+.admin-wrap{display:none}
+.admin-header{position:sticky;top:0;z-index:10;background:rgba(10,10,8,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.admin-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold)}
+.admin-logo strong{text-transform:uppercase;font-weight:600}
+.header-btns{display:flex;gap:0.75rem}
+.hbtn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1rem;font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-flex;align-items:center}
+.hbtn:hover{border-color:var(--gold);color:var(--gold)}
 
-  .tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 2.5rem; background: var(--cream); }
-  .tab { background: none; border: none; color: var(--text-muted); font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.3s; }
-  .tab.active { color: var(--terra); border-bottom-color: var(--terra); }
-  .tab-content { display: none; padding: 2.5rem; }
-  .tab-content.active { display: block; }
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 2.5rem;background:var(--black);overflow-x:auto}
+.tab{background:none;border:none;color:var(--text-muted);font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 1.5rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.3s;white-space:nowrap;flex-shrink:0}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-content{display:none;padding:2.5rem}
+.tab-content.active{display:block}
 
-  /* STATS */
-  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
-  .stat-card { background: var(--cream-2); border: 1px solid var(--border); padding: 1.2rem 1.5rem; }
-  .stat-card-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
-  .stat-card-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--terra); }
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:2.5rem}
+.stat-card{background:var(--black-2);border:1px solid var(--border);padding:1.2rem 1.5rem}
+.stat-card-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem}
+.stat-card-value{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold)}
 
-  .filters { display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
-  .filter-btn { background: none; border: 1px solid var(--border-strong); color: var(--text-muted); padding: 0.45rem 1.1rem; font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-  .filter-btn.active, .filter-btn:hover { border-color: var(--terra); color: var(--terra); }
+.filters{display:flex;gap:0.75rem;margin-bottom:2rem;flex-wrap:wrap}
+.filter-btn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:0.45rem 1.1rem;font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
 
-  /* MESSAGES */
-  .items-list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .msg-card { background: var(--cream-2); border: 1px solid var(--border); padding: 1.5rem; transition: border-color 0.3s; }
-  .msg-card.unread { border-left: 3px solid var(--terra); }
-  .msg-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
-  .msg-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); }
-  .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .badge { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid; }
-  .badge-new { color: var(--terra); border-color: var(--terra); }
-  .badge-read { color: var(--text-muted); border-color: var(--border-strong); }
-  .badge-encours { color: #27ae60; border-color: #27ae60; }
-  .badge-termine { color: var(--text-muted); border-color: var(--border); }
-  .msg-meta { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .msg-detail { background: var(--cream); border: 1px solid var(--border); padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
-  .msg-detail-item label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.2rem; }
-  .msg-detail-item span { font-size: 0.85rem; color: var(--text); }
-  .msg-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.2rem; }
-  .msg-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .mbtn { background: none; border: 1px solid var(--border-strong); color: var(--text-muted); padding: 0.4rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-  .mbtn:hover { border-color: var(--terra); color: var(--terra); }
-  .mbtn.green { border-color: rgba(39,174,96,0.5); color: #27ae60; }
-  .mbtn.green:hover { border-color: #27ae60; }
-  .mbtn.red:hover { border-color: #c0392b; color: #c0392b; }
-  .mbtn.primary { background: var(--terra); border-color: var(--terra); color: var(--cream); }
-  .mbtn.primary:hover { background: var(--terra-light); }
+/* CARDS */
+.items-list{display:flex;flex-direction:column;gap:0.75rem}
+.card{background:var(--black-2);border:1px solid var(--border);padding:1.5rem;transition:border-color 0.3s}
+.card.unread{border-left:3px solid var(--gold)}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.75rem}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text)}
+.badges{display:flex;gap:0.5rem;flex-wrap:wrap}
+.badge{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid}
+.badge-new{color:var(--gold);border-color:var(--gold)}
+.badge-read{color:var(--text-dim);border-color:var(--border)}
+.badge-encours{color:#52b788;border-color:#52b788}
+.badge-termine{color:var(--text-dim);border-color:var(--border)}
+.badge-approuve{color:#52b788;border-color:#52b788}
+.badge-attente{color:var(--gold);border-color:var(--gold)}
+.card-meta{font-size:0.73rem;color:var(--text-muted);margin-bottom:0.75rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+.card-detail{background:var(--black-3);border:1px solid var(--border);padding:1rem;margin-bottom:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem}
+.card-detail-item label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.2rem}
+.card-detail-item span{font-size:0.82rem;color:var(--text)}
+.card-text{font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.2rem}
+.card-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+.cbtn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:0.4rem 1rem;font-family:'Jost',sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.cbtn:hover{border-color:var(--gold);color:var(--gold)}
+.cbtn.green{border-color:rgba(82,183,136,0.4);color:#52b788}
+.cbtn.green:hover{border-color:#52b788}
+.cbtn.red:hover{border-color:#e07a7a;color:#e07a7a}
+.cbtn.primary{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.cbtn.primary:hover{background:var(--gold-2)}
+.reponse-area{margin-top:1rem;display:flex;flex-direction:column;gap:0.5rem}
+.reponse-input{background:var(--black-3);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;font-family:'Jost',sans-serif;font-size:0.8rem;outline:none;resize:none;height:65px;width:100%}
+.reponse-input:focus{border-color:var(--gold)}
+.avis-stars-admin{color:var(--gold);font-size:0.88rem;margin-bottom:0.5rem;letter-spacing:0.1em}
 
-  /* CHANTIERS */
-  .chantier-form { background: var(--cream-2); border: 1px solid var(--border); padding: 2rem; margin-bottom: 2rem; }
-  .chantier-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--terra); margin-bottom: 1.5rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .fi-wrap { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
-  .fi-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-  .fi { background: var(--cream); border: 1px solid var(--border-strong); color: var(--text); padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.3s; width: 100%; }
-  .fi:focus { border-color: var(--terra); }
-  .fi option { background: var(--cream); }
-  .add-btn { background: var(--terra); border: none; color: var(--cream); padding: 0.75rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-  .add-btn:hover { background: var(--terra-light); }
-  .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-  .chantier-card { background: var(--cream-2); border: 1px solid var(--border); padding: 1.5rem; }
-  .chantier-card.active { border-left: 3px solid #27ae60; }
-  .chantier-card.done { opacity: 0.55; }
-  .chantier-type { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.5rem; }
-  .chantier-client { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--brown); margin-bottom: 0.25rem; }
-  .chantier-tel { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; }
-  .chantier-dates { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
-  .chantier-date { font-size: 0.75rem; color: var(--text-muted); }
-  .chantier-date strong { color: var(--text); display: block; font-size: 0.85rem; margin-bottom: 0.1rem; }
-  .progress-bar { height: 2px; background: var(--cream-3); margin-bottom: 1rem; }
-  .progress-fill { height: 100%; background: var(--terra); }
-  .chantier-actions { display: flex; gap: 0.5rem; }
+/* CHANTIERS */
+.chantier-form{background:var(--black-2);border:1px solid var(--border);padding:2rem;margin-bottom:2rem}
+.chantier-form h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--gold);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fi-wrap{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem}
+.fi-label{font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim)}
+.fi{background:var(--black-3);border:1px solid var(--border);color:var(--text);padding:0.75rem 1rem;font-family:'Jost',sans-serif;font-size:0.83rem;outline:none;transition:border-color 0.3s;width:100%}
+.fi:focus{border-color:var(--gold)}
+.fi option{background:var(--black-2)}
+.add-btn{background:var(--gold);border:none;color:var(--black);padding:0.75rem 2rem;font-family:'Jost',sans-serif;font-size:0.76rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.3s}
+.add-btn:hover{background:var(--gold-2)}
+.calendar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+.ch-card{background:var(--black-2);border:1px solid var(--border);padding:1.5rem;transition:border-color 0.3s}
+.ch-card.active{border-left:3px solid #52b788}
+.ch-card.done{opacity:0.5}
+.ch-type{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.ch-client{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:0.25rem}
+.ch-tel{font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem}
+.ch-dates{display:flex;gap:1.5rem;margin-bottom:1rem}
+.ch-date{font-size:0.72rem;color:var(--text-muted)}
+.ch-date strong{color:var(--text);display:block;font-size:0.82rem;margin-bottom:0.1rem}
+.progress-bar{height:2px;background:var(--black-3);margin-bottom:1rem}
+.progress-fill{height:100%;background:var(--gold)}
+.ch-actions{display:flex;gap:0.5rem}
 
-  /* AVIS ADMIN */
-  .avis-admin-card { background: var(--cream-2); border: 1px solid var(--border); padding: 1.5rem; }
-  .avis-admin-card.pending { border-left: 3px solid var(--terra); }
-  .avis-stars { color: var(--terra); font-size: 0.85rem; margin-bottom: 0.5rem; }
-  .avis-text-admin { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--brown); line-height: 1.6; font-style: italic; margin-bottom: 0.75rem; }
-  .reponse-form { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .reponse-input { background: var(--cream); border: 1px solid var(--border-strong); color: var(--text); padding: 0.6rem 0.8rem; font-family: 'Jost', sans-serif; font-size: 0.82rem; outline: none; resize: none; height: 70px; }
-  .reponse-input:focus { border-color: var(--terra); }
+/* CONFIG */
+.config-section{background:var(--black-2);border:1px solid var(--border);padding:2rem;margin-bottom:1.5rem}
+.config-section h3{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.config-input{background:var(--black-3);border:1px solid var(--border);color:var(--text);padding:0.75rem 1rem;font-family:'Jost',sans-serif;font-size:0.83rem;outline:none;width:100%;margin-bottom:0.75rem;transition:border-color 0.3s}
+.config-input:focus{border-color:var(--gold)}
+.config-label{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.35rem}
+.config-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0.75rem}
+.editor-toolbar{display:flex;gap:0.5rem;margin-bottom:0.5rem}
+.tool-btn{background:var(--black-3);border:1px solid var(--border);color:var(--text-muted);padding:0.3rem 0.7rem;font-size:0.78rem;cursor:pointer;transition:all 0.3s}
+.tool-btn:hover{color:var(--gold);border-color:var(--gold)}
+.editor-area{background:var(--black-3);border:1px solid var(--border);color:var(--text);padding:1rem;font-family:'Jost',sans-serif;font-size:0.83rem;line-height:1.7;min-height:100px;outline:none;width:100%}
+.editor-area:focus{border-color:var(--gold)}
+.list-edit{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.75rem}
+.list-item-edit{display:flex;gap:0.5rem;align-items:center}
+.list-item-edit input{flex:1;background:var(--black-3);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;font-family:'Jost',sans-serif;font-size:0.8rem;outline:none;transition:border-color 0.3s}
+.list-item-edit input:focus{border-color:var(--gold)}
+.del-btn{background:none;border:1px solid var(--border);color:var(--text-dim);padding:0.5rem 0.7rem;cursor:pointer;font-size:0.78rem;transition:all 0.3s;flex-shrink:0}
+.del-btn:hover{border-color:#e07a7a;color:#e07a7a}
+.add-item-btn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1rem;font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.add-item-btn:hover{border-color:var(--gold);color:var(--gold)}
+.service-edit{display:grid;grid-template-columns:50px 1fr 2fr auto;gap:0.5rem;align-items:center;background:var(--black-3);border:1px solid var(--border);padding:0.75rem}
+.service-edit input{background:var(--black);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.75rem;font-family:'Jost',sans-serif;font-size:0.78rem;outline:none;width:100%}
+.service-edit input:focus{border-color:var(--gold)}
+.stat-edit{display:grid;grid-template-columns:100px 1fr auto;gap:0.5rem;align-items:center;background:var(--black-3);border:1px solid var(--border);padding:0.75rem}
+.stat-edit input{background:var(--black);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.75rem;font-family:'Jost',sans-serif;font-size:0.78rem;outline:none;width:100%}
+.stat-edit input:focus{border-color:var(--gold)}
+.faq-edit{background:var(--black-3);border:1px solid var(--border);padding:1rem;display:flex;flex-direction:column;gap:0.5rem}
+.faq-edit input,.faq-edit textarea{background:var(--black);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.75rem;font-family:'Jost',sans-serif;font-size:0.78rem;outline:none;width:100%}
+.faq-edit textarea{height:60px;resize:none}
+.faq-edit input:focus,.faq-edit textarea:focus{border-color:var(--gold)}
+.faq-edit-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+.save-bar{display:flex;align-items:center;gap:1rem;padding:0 0 2rem}
+.save-btn{background:var(--gold);border:none;color:var(--black);padding:0.85rem 2.5rem;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.3s}
+.save-btn:hover{background:var(--gold-2)}
+.save-feedback{font-size:0.8rem;color:#52b788;display:none}
+.empty-state{text-align:center;padding:3rem;color:var(--text-muted);font-size:0.85rem}
 
-  /* CONTENT */
-  .editor-section { background: var(--cream-2); border: 1px solid var(--border); padding: 2rem; margin-bottom: 1.5rem; }
-  .editor-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; color: var(--terra); margin-bottom: 1.5rem; }
-  .editor-toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
-  .tool-btn { background: var(--cream-3); border: 1px solid var(--border); color: var(--text-muted); padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
-  .tool-btn:hover { color: var(--terra); border-color: var(--terra); }
-  .editor-area { background: var(--cream); border: 1px solid var(--border-strong); color: var(--text); padding: 1rem; font-family: 'Jost', sans-serif; font-size: 0.88rem; line-height: 1.7; min-height: 100px; outline: none; }
-  .editor-area:focus { border-color: var(--terra); }
-  .plain-input { background: var(--cream); border: 1px solid var(--border-strong); color: var(--text); padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; outline: none; width: 100%; margin-bottom: 0.75rem; }
-  .plain-input:focus { border-color: var(--terra); }
-  .save-btn { background: var(--terra); border: none; color: var(--cream); padding: 0.75rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; margin-top: 1rem; }
-  .save-btn:hover { background: var(--terra-light); }
-  .save-feedback { font-size: 0.8rem; color: #27ae60; margin-left: 1rem; display: none; }
-  .services-list, .avis-edit-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
-  .service-item, .avis-edit-item { background: var(--cream); border: 1px solid var(--border); padding: 0.75rem; display: grid; gap: 0.75rem; align-items: start; }
-  .service-item { grid-template-columns: 50px 1fr 2fr auto; }
-  .avis-edit-item { grid-template-columns: 1fr 1fr auto auto; }
-  .edit-input { background: var(--cream-2); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 0.75rem; font-family: 'Jost', sans-serif; font-size: 0.82rem; outline: none; width: 100%; }
-  .del-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 0.75rem; cursor: pointer; font-size: 0.8rem; transition: all 0.3s; }
-  .del-btn:hover { border-color: #c0392b; color: #c0392b; }
-  .add-item-btn { background: none; border: 1px solid var(--border-strong); color: var(--text-muted); padding: 0.5rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-  .add-item-btn:hover { border-color: var(--terra); color: var(--terra); }
-  .empty-state { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.88rem; }
-
-  @media (max-width: 600px) {
-    .admin-header, .tab-content { padding: 1rem 1.5rem; }
-    .tabs { padding: 0 1.5rem; overflow-x: auto; }
-    .form-row { grid-template-columns: 1fr; }
-    .service-item { grid-template-columns: 1fr; }
-    .avis-edit-item { grid-template-columns: 1fr; }
-  }
+@media(max-width:700px){
+  .admin-header,.tab-content{padding:1rem 1.5rem}
+  .tabs{padding:0 1.5rem}
+  .form-row,.config-row,.service-edit,.stat-edit{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -162,6 +170,7 @@
     <div class="admin-logo">Fabien <strong>BOSTDEDORE</strong> — Admin</div>
     <div class="header-btns">
       <a href="index.html" class="hbtn">← Site</a>
+      <a href="avis.html" class="hbtn">Avis public</a>
       <button class="hbtn" onclick="logout()">Déconnexion</button>
     </div>
   </div>
@@ -170,25 +179,25 @@
     <button class="tab active" onclick="switchTab('messages',this)">Messages</button>
     <button class="tab" onclick="switchTab('avis',this)">Avis</button>
     <button class="tab" onclick="switchTab('chantiers',this)">Chantiers</button>
-    <button class="tab" onclick="switchTab('contenu',this)">Contenu</button>
+    <button class="tab" onclick="switchTab('config',this)">Configuration</button>
   </div>
 
   <!-- MESSAGES -->
   <div class="tab-content active" id="tab-messages">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-card-label">Total</div><div class="stat-card-value" id="statTotal">—</div></div>
-      <div class="stat-card"><div class="stat-card-label">Non lus</div><div class="stat-card-value" id="statUnread">—</div></div>
-      <div class="stat-card"><div class="stat-card-label">En cours</div><div class="stat-card-value" id="statEncours">—</div></div>
-      <div class="stat-card"><div class="stat-card-label">Aujourd'hui</div><div class="stat-card-value" id="statToday">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">Total</div><div class="stat-card-value" id="sTotal">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">Non lus</div><div class="stat-card-value" id="sUnread">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">En cours</div><div class="stat-card-value" id="sEncours">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">Aujourd'hui</div><div class="stat-card-value" id="sToday">—</div></div>
     </div>
     <div class="filters">
-      <button class="filter-btn active" onclick="setFilter('all',this)">Tous</button>
-      <button class="filter-btn" onclick="setFilter('unread',this)">Non lus</button>
-      <button class="filter-btn" onclick="setFilter('nouveau',this)">Nouveaux</button>
-      <button class="filter-btn" onclick="setFilter('en_cours',this)">En cours</button>
-      <button class="filter-btn" onclick="setFilter('termine',this)">Terminés</button>
+      <button class="filter-btn active" onclick="setMsgFilter('all',this)">Tous</button>
+      <button class="filter-btn" onclick="setMsgFilter('unread',this)">Non lus</button>
+      <button class="filter-btn" onclick="setMsgFilter('nouveau',this)">Nouveaux</button>
+      <button class="filter-btn" onclick="setMsgFilter('en_cours',this)">En cours</button>
+      <button class="filter-btn" onclick="setMsgFilter('termine',this)">Terminés</button>
     </div>
-    <div class="items-list" id="messagesList"><div class="empty-state">Chargement...</div></div>
+    <div class="items-list" id="msgList"><div class="empty-state">Chargement...</div></div>
   </div>
 
   <!-- AVIS -->
@@ -211,45 +220,78 @@
       </div>
       <div class="form-row">
         <div class="fi-wrap"><label class="fi-label">Type de travaux</label><select class="fi" id="ch_type"><option>Construction</option><option>Rénovation</option><option>Installation</option><option>Travaux à domicile</option><option>Autre</option></select></div>
-        <div class="fi-wrap"><label class="fi-label">N° de dossier</label><input class="fi" id="ch_num" placeholder="2026-001"></div>
+        <div class="fi-wrap"><label class="fi-label">N° dossier</label><input class="fi" id="ch_num" placeholder="2026-001"></div>
       </div>
       <div class="form-row">
-        <div class="fi-wrap"><label class="fi-label">Date de début *</label><input type="date" class="fi" id="ch_debut"></div>
-        <div class="fi-wrap"><label class="fi-label">Date de fin prévue *</label><input type="date" class="fi" id="ch_fin"></div>
+        <div class="fi-wrap"><label class="fi-label">Date début *</label><input type="date" class="fi" id="ch_debut"></div>
+        <div class="fi-wrap"><label class="fi-label">Date fin prévue *</label><input type="date" class="fi" id="ch_fin"></div>
       </div>
-      <button class="add-btn" onclick="addChantier()">Ajouter →</button>
+      <button class="add-btn" onclick="addChantier()">Ajouter le chantier →</button>
     </div>
     <div class="calendar-grid" id="chantiersGrid"><div class="empty-state">Chargement...</div></div>
   </div>
 
-  <!-- CONTENU -->
-  <div class="tab-content" id="tab-contenu">
-    <div class="editor-section">
-      <h3>Texte principal</h3>
-      <div class="fi-wrap"><label class="fi-label">Sous-titre hero</label><input class="plain-input" id="ed_hero_sub"></div>
+  <!-- CONFIG -->
+  <div class="tab-content" id="tab-config">
+
+    <div class="config-section">
+      <h3>🏢 Identité de l'entreprise</h3>
+      <label class="config-label">Nom de l'entreprise</label>
+      <input class="config-input" id="cfg_nom" placeholder="Fabien BOSTDEDORE">
+      <div class="config-row">
+        <div><label class="config-label">Téléphone</label><input class="config-input" id="cfg_tel" placeholder="06 28 55 09 95" style="margin-bottom:0"></div>
+        <div><label class="config-label">Email</label><input class="config-input" id="cfg_email" placeholder="contact@exemple.fr" style="margin-bottom:0"></div>
+      </div>
+      <label class="config-label">Disponibilités</label>
+      <input class="config-input" id="cfg_dispo" placeholder="Lun – Sam, 8h – 19h">
     </div>
-    <div class="editor-section">
-      <h3>À propos</h3>
+
+    <div class="config-section">
+      <h3>🌐 Texte principal (hero)</h3>
+      <label class="config-label">Slogan / titre</label>
+      <input class="config-input" id="cfg_slogan" placeholder="L'artisan de confiance pour tous vos travaux">
+      <label class="config-label">Description courte</label>
+      <input class="config-input" id="cfg_desc_hero" placeholder="Construction, rénovation, installation...">
+    </div>
+
+    <div class="config-section">
+      <h3>📝 À propos</h3>
       <div class="editor-toolbar">
         <button class="tool-btn" onclick="fmt('bold')"><b>G</b></button>
         <button class="tool-btn" onclick="fmt('italic')"><i>I</i></button>
         <button class="tool-btn" onclick="fmt('underline')"><u>S</u></button>
       </div>
-      <div class="editor-area" id="ed_about" contenteditable="true"></div>
+      <div class="editor-area" id="cfg_about" contenteditable="true"></div>
     </div>
-    <div class="editor-section">
-      <h3>Informations pratiques</h3>
-      <div class="fi-wrap"><label class="fi-label">Disponibilités</label><input class="plain-input" id="ed_dispo"></div>
-      <div class="fi-wrap"><label class="fi-label">Zone d'intervention</label><input class="plain-input" id="ed_zone"></div>
+
+    <div class="config-section">
+      <h3>📍 Zones d'intervention</h3>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:1rem">Ajoutez toutes les zones où vous intervenez. Elles apparaîtront sur le site et dans le formulaire de devis.</p>
+      <div class="list-edit" id="zonesEdit"></div>
+      <button class="add-item-btn" onclick="addZone()">+ Ajouter une zone</button>
     </div>
-    <div class="editor-section">
-      <h3>Services</h3>
-      <div class="services-list" id="servicesList"></div>
+
+    <div class="config-section">
+      <h3>🔧 Services</h3>
+      <div class="list-edit" id="servicesEdit"></div>
       <button class="add-item-btn" onclick="addService()">+ Ajouter un service</button>
     </div>
-    <div style="padding-bottom:2rem;display:flex;align-items:center;">
-      <button class="save-btn" onclick="saveContent()">Enregistrer les modifications</button>
-      <span class="save-feedback" id="saveFeedback">✓ Sauvegardé !</span>
+
+    <div class="config-section">
+      <h3>📊 Statistiques (hero)</h3>
+      <div class="list-edit" id="statsEdit"></div>
+      <button class="add-item-btn" onclick="addStat()">+ Ajouter une stat</button>
+    </div>
+
+    <div class="config-section">
+      <h3>❓ FAQ</h3>
+      <div class="list-edit" id="faqEdit"></div>
+      <button class="add-item-btn" onclick="addFaq()">+ Ajouter une question</button>
+    </div>
+
+    <div class="save-bar">
+      <button class="save-btn" onclick="saveConfig()">Enregistrer toutes les modifications</button>
+      <span class="save-feedback" id="saveFb">✓ Sauvegardé !</span>
     </div>
   </div>
 </div>
@@ -257,7 +299,7 @@
 <script>
 const API = "https://bostdedore-api.capkychannel.workers.dev";
 let token = sessionStorage.getItem('admin_token');
-let allMessages = [], allAvis = [], chantiers = [], siteContent = {};
+let allMsgs = [], allAvis = [], chantiers = [], cfg = {};
 let msgFilter = 'all', avisFilter = 'all';
 
 if (token) showAdmin();
@@ -275,142 +317,129 @@ async function login() {
 }
 document.getElementById('passwordInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
 function logout() { sessionStorage.removeItem('admin_token'); token = null; document.getElementById('loginWrap').style.display = 'flex'; document.getElementById('adminWrap').style.display = 'none'; }
-function showAdmin() { document.getElementById('loginWrap').style.display = 'none'; document.getElementById('adminWrap').style.display = 'block'; loadMessages(); loadAvis(); loadChantiers(); loadContent(); }
+function showAdmin() { document.getElementById('loginWrap').style.display = 'none'; document.getElementById('adminWrap').style.display = 'block'; loadMsgs(); loadAvis(); loadChantiers(); loadConfig(); }
 function switchTab(name, btn) { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active')); btn.classList.add('active'); document.getElementById('tab-'+name).classList.add('active'); }
 
 // ─── MESSAGES ─────────────────────────────────────────────────
-async function loadMessages() {
+async function loadMsgs() {
   try {
     const res = await fetch(`${API}/admin/messages`, { headers: { 'Authorization': `Bearer ${token}` } });
     if (res.status === 401) { logout(); return; }
-    allMessages = await res.json();
-    updateStats(); renderMessages();
-  } catch { document.getElementById('messagesList').innerHTML = '<div class="empty-state">Erreur de chargement.</div>'; }
+    allMsgs = await res.json(); updateStats(); renderMsgs();
+  } catch { document.getElementById('msgList').innerHTML = '<div class="empty-state">Erreur de chargement.</div>'; }
 }
 
 function updateStats() {
   const today = new Date().toDateString();
-  document.getElementById('statTotal').textContent = allMessages.length;
-  document.getElementById('statUnread').textContent = allMessages.filter(m => !m.lu).length;
-  document.getElementById('statEncours').textContent = allMessages.filter(m => m.statut === 'en_cours').length;
-  document.getElementById('statToday').textContent = allMessages.filter(m => new Date(m.date).toDateString() === today).length;
+  document.getElementById('sTotal').textContent = allMsgs.length;
+  document.getElementById('sUnread').textContent = allMsgs.filter(m => !m.lu).length;
+  document.getElementById('sEncours').textContent = allMsgs.filter(m => m.statut === 'en_cours').length;
+  document.getElementById('sToday').textContent = allMsgs.filter(m => new Date(m.date).toDateString() === today).length;
 }
 
-function setFilter(f, btn) { msgFilter = f; document.querySelectorAll('#tab-messages .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderMessages(); }
+function setMsgFilter(f, btn) { msgFilter = f; document.querySelectorAll('#tab-messages .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderMsgs(); }
 
-function renderMessages() {
-  let msgs = allMessages;
+function renderMsgs() {
+  let msgs = allMsgs;
   if (msgFilter === 'unread') msgs = msgs.filter(m => !m.lu);
   else if (msgFilter !== 'all') msgs = msgs.filter(m => m.statut === msgFilter);
-  if (!msgs.length) { document.getElementById('messagesList').innerHTML = '<div class="empty-state">Aucun message.</div>'; return; }
-  document.getElementById('messagesList').innerHTML = msgs.map(m => {
+  if (!msgs.length) { document.getElementById('msgList').innerHTML = '<div class="empty-state">Aucun message.</div>'; return; }
+  document.getElementById('msgList').innerHTML = msgs.map(m => {
     const sb = m.statut === 'en_cours' ? '<span class="badge badge-encours">En cours</span>' : m.statut === 'termine' ? '<span class="badge badge-termine">Terminé</span>' : '';
-    const lb = m.lu ? '<span class="badge badge-read">Lu</span>' : '<span class="badge badge-new">Nouveau</span>';
-    const details = [m.type_travaux && `<div class="msg-detail-item"><label>Type</label><span>${esc(m.type_travaux)}</span></div>`, m.surface && `<div class="msg-detail-item"><label>Surface</label><span>${esc(m.surface)}</span></div>`, m.budget && `<div class="msg-detail-item"><label>Budget</label><span>${esc(m.budget)}</span></div>`, m.urgence && `<div class="msg-detail-item"><label>Urgence</label><span>${esc(m.urgence)}</span></div>`].filter(Boolean).join('');
-    return `<div class="msg-card ${m.lu?'':'unread'}">
-      <div class="msg-header"><div class="msg-name">${esc(m.nom)}</div><div class="badges">${lb}${sb}</div></div>
-      <div class="msg-meta">${m.telephone?`<span>📞 <a href="tel:${esc(m.telephone)}" style="color:var(--text-muted)">${esc(m.telephone)}</a></span>`:''}<span>📅 ${fmtDate(m.date)}</span>${m.date_prise_en_charge?`<span>🔧 ${fmtDate(m.date_prise_en_charge)}</span>`:''}</div>
-      ${details ? `<div class="msg-detail">${details}</div>` : ''}
-      <div class="msg-text">${esc(m.message)}</div>
-      <div class="msg-actions">
-        ${m.telephone?`<button class="mbtn green" onclick="window.location='tel:${esc(m.telephone)}'">Appeler</button>`:''}
-        ${!m.lu?`<button class="mbtn" onclick="markRead('${m.id}')">Marquer lu</button>`:''}
-        ${m.statut==='nouveau'?`<button class="mbtn primary" onclick="setStatut('${m.id}','en_cours')">Prendre en charge</button>`:''}
-        ${m.statut==='en_cours'?`<button class="mbtn green" onclick="setStatut('${m.id}','termine')">Terminer ✓</button>`:''}
-        <button class="mbtn red" onclick="deleteMsg('${m.id}')">Supprimer</button>
+    const details = [m.type_travaux && `<div class="card-detail-item"><label>Type</label><span>${esc(m.type_travaux)}</span></div>`, m.zone && `<div class="card-detail-item"><label>Zone</label><span>${esc(m.zone)}</span></div>`, m.surface && `<div class="card-detail-item"><label>Surface</label><span>${esc(m.surface)}</span></div>`, m.budget && `<div class="card-detail-item"><label>Budget</label><span>${esc(m.budget)}</span></div>`, m.urgence && `<div class="card-detail-item"><label>Urgence</label><span>${esc(m.urgence)}</span></div>`].filter(Boolean).join('');
+    return `<div class="card ${m.lu?'':'unread'}">
+      <div class="card-header"><div class="card-name">${esc(m.nom)}</div><div class="badges"><span class="badge ${m.lu?'badge-read':'badge-new'}">${m.lu?'Lu':'Nouveau'}</span>${sb}</div></div>
+      <div class="card-meta">${m.telephone?`<span>📞 <a href="tel:${esc(m.telephone)}" style="color:inherit">${esc(m.telephone)}</a></span>`:''}<span>📅 ${fd(m.date)}</span>${m.date_prise_en_charge?`<span>🔧 ${fd(m.date_prise_en_charge)}</span>`:''}</div>
+      ${details?`<div class="card-detail">${details}</div>`:''}
+      <div class="card-text">${esc(m.message)}</div>
+      <div class="card-actions">
+        ${m.telephone?`<button class="cbtn green" onclick="window.location='tel:${esc(m.telephone)}'">Appeler</button>`:''}
+        ${!m.lu?`<button class="cbtn" onclick="markRead('${m.id}')">Marquer lu</button>`:''}
+        ${m.statut==='nouveau'?`<button class="cbtn primary" onclick="setStatut('${m.id}','en_cours')">Prendre en charge</button>`:''}
+        ${m.statut==='en_cours'?`<button class="cbtn green" onclick="setStatut('${m.id}','termine')">Terminer ✓</button>`:''}
+        <button class="cbtn red" onclick="delMsg('${m.id}')">Supprimer</button>
       </div>
     </div>`;
   }).join('');
 }
 
-async function markRead(id) { await fetch(`${API}/admin/message/lu`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`}, body:JSON.stringify({id}) }); const m=allMessages.find(m=>m.id===id); if(m)m.lu=true; updateStats(); renderMessages(); }
-async function setStatut(id, statut) {
-  await fetch(`${API}/admin/message/statut`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`}, body:JSON.stringify({id,statut}) });
-  const m=allMessages.find(m=>m.id===id);
+async function markRead(id) { await apiFetch(`/admin/message/lu`,'POST',{id}); const m=allMsgs.find(m=>m.id===id);if(m)m.lu=true; updateStats();renderMsgs(); }
+async function setStatut(id,statut) {
+  await apiFetch(`/admin/message/statut`,'POST',{id,statut});
+  const m=allMsgs.find(m=>m.id===id);
   if(m){m.statut=statut;m.lu=true;if(statut==='en_cours')m.date_prise_en_charge=new Date().toISOString();if(statut==='termine')m.date_fin=new Date().toISOString();}
-  updateStats(); renderMessages();
+  updateStats();renderMsgs();
 }
-async function deleteMsg(id) { if(!confirm('Supprimer ?'))return; await fetch(`${API}/admin/message`,{method:'DELETE',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify({id})}); allMessages=allMessages.filter(m=>m.id!==id); updateStats(); renderMessages(); }
+async function delMsg(id) { if(!confirm('Supprimer ?'))return; await apiFetch('/admin/message','DELETE',{id}); allMsgs=allMsgs.filter(m=>m.id!==id); updateStats();renderMsgs(); }
 
 // ─── AVIS ─────────────────────────────────────────────────────
 async function loadAvis() {
-  try {
-    const res = await fetch(`${API}/admin/avis`, { headers: { 'Authorization': `Bearer ${token}` } });
-    allAvis = await res.json();
-    renderAvis();
-  } catch { document.getElementById('avisList').innerHTML = '<div class="empty-state">Erreur de chargement.</div>'; }
+  try { const res=await fetch(`${API}/admin/avis`,{headers:{'Authorization':`Bearer ${token}`}}); allAvis=await res.json(); renderAvis(); }
+  catch { document.getElementById('avisList').innerHTML='<div class="empty-state">Erreur.</div>'; }
 }
 
-function setAvisFilter(f, btn) { avisFilter = f; document.querySelectorAll('#tab-avis .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderAvis(); }
+function setAvisFilter(f,btn) { avisFilter=f; document.querySelectorAll('#tab-avis .filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderAvis(); }
 
 function renderAvis() {
-  let avis = allAvis;
-  if (avisFilter === 'pending') avis = avis.filter(a => !a.approuve);
-  else if (avisFilter === 'approved') avis = avis.filter(a => a.approuve);
-  if (!avis.length) { document.getElementById('avisList').innerHTML = '<div class="empty-state">Aucun avis.</div>'; return; }
-  document.getElementById('avisList').innerHTML = avis.map(a => `
-    <div class="avis-admin-card ${a.approuve?'':'pending'}">
-      <div class="msg-header">
-        <div>
-          <div class="avis-stars">${'★'.repeat(a.etoiles)}${'☆'.repeat(5-a.etoiles)}</div>
-          <div class="msg-name">${esc(a.nom)}</div>
-        </div>
-        <div class="badges">
-          ${a.approuve?'<span class="badge badge-encours">Approuvé</span>':'<span class="badge badge-new">En attente</span>'}
-          ${a.mis_en_avant?'<span class="badge badge-encours">★ En avant</span>':''}
-        </div>
+  let avis=allAvis;
+  if(avisFilter==='pending')avis=avis.filter(a=>!a.approuve);
+  else if(avisFilter==='approved')avis=avis.filter(a=>a.approuve);
+  if(!avis.length){document.getElementById('avisList').innerHTML='<div class="empty-state">Aucun avis.</div>';return;}
+  document.getElementById('avisList').innerHTML=avis.map(a=>`
+    <div class="card ${a.approuve?'':'unread'}">
+      <div class="card-header">
+        <div><div class="avis-stars-admin">${'★'.repeat(a.etoiles)}${'☆'.repeat(5-a.etoiles)}</div><div class="card-name">${esc(a.nom)}</div></div>
+        <div class="badges">${a.approuve?'<span class="badge badge-approuve">Approuvé</span>':'<span class="badge badge-attente">En attente</span>'}${a.mis_en_avant?'<span class="badge badge-encours">★ En avant</span>':''}</div>
       </div>
-      <div class="msg-meta"><span>📅 ${fmtDate(a.date)}</span></div>
-      <p class="avis-text-admin">"${esc(a.texte)}"</p>
-      ${a.reponse?`<div style="background:var(--cream);padding:0.75rem;border-left:2px solid var(--terra);font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem"><strong style="color:var(--terra);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.2rem">Votre réponse</strong>${esc(a.reponse)}</div>`:''}
-      <div class="reponse-form">
-        <textarea class="reponse-input" id="rep_${a.id}" placeholder="Répondre à cet avis...">${a.reponse||''}</textarea>
-        <div class="msg-actions">
-          ${!a.approuve?`<button class="mbtn green" onclick="avisAction('${a.id}','approuver')">Approuver</button>`:`<button class="mbtn" onclick="avisAction('${a.id}','refuser')">Désapprouver</button>`}
-          <button class="mbtn" onclick="avisAction('${a.id}','mettre_en_avant')">${a.mis_en_avant?'Retirer de la une':'Mettre en avant'}</button>
-          <button class="mbtn primary" onclick="repondreAvis('${a.id}')">Enregistrer la réponse</button>
-          <button class="mbtn red" onclick="avisAction('${a.id}','supprimer')">Supprimer</button>
+      <div class="card-meta"><span>📅 ${fd(a.date)}</span></div>
+      <div class="card-text">"${esc(a.texte)}"</div>
+      ${a.reponse?`<div style="background:var(--black-3);padding:0.75rem;border-left:2px solid var(--gold);font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem"><strong style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.2rem">Votre réponse</strong>${esc(a.reponse)}</div>`:''}
+      <div class="reponse-area">
+        <textarea class="reponse-input" id="rep_${a.id}" placeholder="Écrire une réponse...">${a.reponse||''}</textarea>
+        <div class="card-actions">
+          ${!a.approuve?`<button class="cbtn green" onclick="avisAction('${a.id}','approuver')">Approuver</button>`:`<button class="cbtn" onclick="avisAction('${a.id}','refuser')">Désapprouver</button>`}
+          <button class="cbtn" onclick="avisAction('${a.id}','mettre_en_avant')">${a.mis_en_avant?'Retirer de la une':'Mettre en avant'}</button>
+          <button class="cbtn primary" onclick="repAvis('${a.id}')">Sauvegarder réponse</button>
+          <button class="cbtn red" onclick="avisAction('${a.id}','supprimer')">Supprimer</button>
         </div>
       </div>
     </div>`).join('');
 }
 
-async function avisAction(id, action) {
-  if (action === 'supprimer' && !confirm('Supprimer cet avis ?')) return;
-  await fetch(`${API}/admin/avis/action`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`}, body:JSON.stringify({id,action}) });
-  if (action === 'supprimer') allAvis = allAvis.filter(a => a.id !== id);
-  else { const a = allAvis.find(a=>a.id===id); if(a){ if(action==='approuver')a.approuve=true; if(action==='refuser')a.approuve=false; if(action==='mettre_en_avant')a.mis_en_avant=!a.mis_en_avant; } }
+async function avisAction(id,action) {
+  if(action==='supprimer'&&!confirm('Supprimer cet avis ?'))return;
+  await apiFetch('/admin/avis/action','POST',{id,action});
+  if(action==='supprimer')allAvis=allAvis.filter(a=>a.id!==id);
+  else{const a=allAvis.find(a=>a.id===id);if(a){if(action==='approuver')a.approuve=true;if(action==='refuser')a.approuve=false;if(action==='mettre_en_avant')a.mis_en_avant=!a.mis_en_avant;}}
   renderAvis();
 }
-
-async function repondreAvis(id) {
-  const reponse = document.getElementById(`rep_${id}`).value.trim();
-  await fetch(`${API}/admin/avis/action`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`}, body:JSON.stringify({id,action:'repondre',reponse}) });
-  const a = allAvis.find(a=>a.id===id); if(a)a.reponse=reponse;
-  renderAvis();
+async function repAvis(id) {
+  const reponse=document.getElementById(`rep_${id}`).value.trim();
+  await apiFetch('/admin/avis/action','POST',{id,action:'repondre',reponse});
+  const a=allAvis.find(a=>a.id===id);if(a)a.reponse=reponse; renderAvis();
 }
 
 // ─── CHANTIERS ────────────────────────────────────────────────
 async function loadChantiers() {
-  try { const res = await fetch(`${API}/admin/chantiers`,{headers:{'Authorization':`Bearer ${token}`}}); chantiers=await res.json(); renderChantiers(); }
-  catch { document.getElementById('chantiersGrid').innerHTML='<div class="empty-state">Erreur.</div>'; }
+  try{const res=await fetch(`${API}/admin/chantiers`,{headers:{'Authorization':`Bearer ${token}`}});chantiers=await res.json();renderChantiers();}
+  catch{document.getElementById('chantiersGrid').innerHTML='<div class="empty-state">Erreur.</div>';}
 }
 
 function renderChantiers() {
-  if (!chantiers.length) { document.getElementById('chantiersGrid').innerHTML='<div class="empty-state">Aucun chantier.</div>'; return; }
-  document.getElementById('chantiersGrid').innerHTML = chantiers.map(c => {
+  if(!chantiers.length){document.getElementById('chantiersGrid').innerHTML='<div class="empty-state">Aucun chantier.</div>';return;}
+  document.getElementById('chantiersGrid').innerHTML=chantiers.map(c=>{
     const debut=new Date(c.date_debut),fin=new Date(c.date_fin),now=new Date();
     const pct=Math.min(100,Math.max(0,Math.round((now-debut)/(fin-debut)*100)));
     const isDone=c.statut==='termine',isActive=!isDone&&now>=debut;
-    return `<div class="chantier-card ${isActive?'active':''} ${isDone?'done':''}">
-      <div class="chantier-type">${esc(c.type)} — N° ${esc(c.numero)}</div>
-      <div class="chantier-client">${esc(c.client)}</div>
-      ${c.telephone?`<div class="chantier-tel">📞 ${esc(c.telephone)}</div>`:''}
-      <div class="chantier-dates"><div class="chantier-date"><strong>${fmtDateShort(c.date_debut)}</strong>Début</div><div class="chantier-date"><strong>${fmtDateShort(c.date_fin)}</strong>Fin prévue</div></div>
+    return`<div class="ch-card ${isActive?'active':''} ${isDone?'done':''}">
+      <div class="ch-type">${esc(c.type)} — N°${esc(c.numero)}</div>
+      <div class="ch-client">${esc(c.client)}</div>
+      ${c.telephone?`<div class="ch-tel">📞 ${esc(c.telephone)}</div>`:''}
+      <div class="ch-dates"><div class="ch-date"><strong>${fds(c.date_debut)}</strong>Début</div><div class="ch-date"><strong>${fds(c.date_fin)}</strong>Fin prévue</div></div>
       ${!isDone?`<div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>`:''}
-      <div class="chantier-actions">
-        ${!isDone?`<button class="mbtn green" onclick="terminerChantier('${c.id}')">Terminer ✓</button>`:'<span style="font-size:0.75rem;color:#27ae60">✓ Terminé</span>'}
-        <button class="mbtn red" onclick="deleteChantier('${c.id}')">Supprimer</button>
+      <div class="ch-actions">
+        ${!isDone?`<button class="cbtn green" onclick="termChantier('${c.id}')">Terminer ✓</button>`:'<span style="font-size:0.72rem;color:#52b788">✓ Terminé</span>'}
+        <button class="cbtn red" onclick="delChantier('${c.id}')">Supprimer</button>
       </div>
     </div>`;
   }).join('');
@@ -420,53 +449,91 @@ async function addChantier() {
   const client=document.getElementById('ch_client').value.trim(),debut=document.getElementById('ch_debut').value,fin=document.getElementById('ch_fin').value;
   if(!client||!debut||!fin){alert('Remplissez client et dates.');return;}
   const data={client,telephone:document.getElementById('ch_tel').value.trim(),type:document.getElementById('ch_type').value,numero:document.getElementById('ch_num').value.trim()||`${new Date().getFullYear()}-${String(chantiers.length+1).padStart(3,'0')}`,date_debut:debut,date_fin:fin,statut:'actif'};
-  const res=await fetch(`${API}/admin/chantier`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify(data)});
-  const r=await res.json(); if(r.success){data.id=r.id;chantiers.unshift(data);renderChantiers();['ch_client','ch_tel','ch_num','ch_debut','ch_fin'].forEach(id=>document.getElementById(id).value='');}
+  const r=await apiFetch('/admin/chantier','POST',data);
+  if(r.success){data.id=r.id;chantiers.unshift(data);renderChantiers();['ch_client','ch_tel','ch_num','ch_debut','ch_fin'].forEach(id=>document.getElementById(id).value='');}
 }
 
-async function terminerChantier(id) { if(!confirm('Marquer comme terminé ?'))return; const c=chantiers.find(c=>c.id===id);if(c)c.statut='termine'; await fetch(`${API}/admin/chantier`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify({...c})}); renderChantiers(); }
-async function deleteChantier(id) { if(!confirm('Supprimer ?'))return; await fetch(`${API}/admin/chantier`,{method:'DELETE',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify({id})}); chantiers=chantiers.filter(c=>c.id!==id); renderChantiers(); }
+async function termChantier(id){if(!confirm('Marquer terminé ?'))return;const c=chantiers.find(c=>c.id===id);if(c)c.statut='termine';await apiFetch('/admin/chantier','POST',{...c});renderChantiers();}
+async function delChantier(id){if(!confirm('Supprimer ?'))return;await apiFetch('/admin/chantier','DELETE',{id});chantiers=chantiers.filter(c=>c.id!==id);renderChantiers();}
 
-// ─── CONTENU ──────────────────────────────────────────────────
-async function loadContent() {
+// ─── CONFIG ───────────────────────────────────────────────────
+async function loadConfig() {
   try {
-    const res=await fetch(`${API}/site-content`); siteContent=await res.json();
-    document.getElementById('ed_hero_sub').value=siteContent.hero_sous_titre||'';
-    document.getElementById('ed_about').innerHTML=siteContent.about_texte||'';
-    document.getElementById('ed_dispo').value=siteContent.disponibilites||'';
-    document.getElementById('ed_zone').value=siteContent.zone||'';
-    renderServicesList();
+    const res=await fetch(`${API}/config`); cfg=await res.json();
+    document.getElementById('cfg_nom').value=cfg.nom_entreprise||'';
+    document.getElementById('cfg_tel').value=cfg.telephone||'';
+    document.getElementById('cfg_email').value=cfg.email||'';
+    document.getElementById('cfg_dispo').value=cfg.disponibilites||'';
+    document.getElementById('cfg_slogan').value=cfg.slogan||'';
+    document.getElementById('cfg_desc_hero').value=cfg.description_hero||'';
+    document.getElementById('cfg_about').innerHTML=cfg.about||'';
+    renderZonesEdit(); renderServicesEdit(); renderStatsEdit(); renderFaqEdit();
   } catch(e){console.error(e);}
 }
 
-function renderServicesList() {
-  document.getElementById('servicesList').innerHTML=(siteContent.services||[]).map((s,i)=>`
-    <div class="service-item">
-      <input class="edit-input" value="${esc(s.icon)}" placeholder="🔧" oninput="siteContent.services[${i}].icon=this.value">
-      <input class="edit-input" value="${esc(s.titre)}" placeholder="Titre" oninput="siteContent.services[${i}].titre=this.value">
-      <input class="edit-input" value="${esc(s.texte)}" placeholder="Description" oninput="siteContent.services[${i}].texte=this.value">
-      <button class="del-btn" onclick="removeService(${i})">✕</button>
+function renderZonesEdit() {
+  document.getElementById('zonesEdit').innerHTML=(cfg.zones||[]).map((z,i)=>`
+    <div class="list-item-edit">
+      <input value="${esc(z)}" placeholder="Bouches-du-Rhône (13)" oninput="cfg.zones[${i}]=this.value">
+      <button class="del-btn" onclick="cfg.zones.splice(${i},1);renderZonesEdit()">✕</button>
     </div>`).join('');
 }
+function addZone(){if(!cfg.zones)cfg.zones=[];cfg.zones.push('');renderZonesEdit();}
 
-function addService(){if(!siteContent.services)siteContent.services=[];siteContent.services.push({icon:'🔧',titre:'',texte:''});renderServicesList();}
-function removeService(i){siteContent.services.splice(i,1);renderServicesList();}
-function fmt(cmd){document.execCommand(cmd,false,null);document.getElementById('ed_about').focus();}
+function renderServicesEdit() {
+  document.getElementById('servicesEdit').innerHTML=(cfg.services||[]).map((s,i)=>`
+    <div class="service-edit">
+      <input value="${esc(s.icon)}" placeholder="🔧" oninput="cfg.services[${i}].icon=this.value">
+      <input value="${esc(s.titre)}" placeholder="Titre" oninput="cfg.services[${i}].titre=this.value">
+      <input value="${esc(s.texte)}" placeholder="Description" oninput="cfg.services[${i}].texte=this.value">
+      <button class="del-btn" onclick="cfg.services.splice(${i},1);renderServicesEdit()">✕</button>
+    </div>`).join('');
+}
+function addService(){if(!cfg.services)cfg.services=[];cfg.services.push({icon:'🔧',titre:'',texte:''});renderServicesEdit();}
 
-async function saveContent() {
-  siteContent.hero_sous_titre=document.getElementById('ed_hero_sub').value;
-  siteContent.about_texte=document.getElementById('ed_about').innerHTML;
-  siteContent.disponibilites=document.getElementById('ed_dispo').value;
-  siteContent.zone=document.getElementById('ed_zone').value;
+function renderStatsEdit() {
+  document.getElementById('statsEdit').innerHTML=(cfg.stats||[]).map((s,i)=>`
+    <div class="stat-edit">
+      <input value="${esc(s.valeur)}" placeholder="15+" oninput="cfg.stats[${i}].valeur=this.value">
+      <input value="${esc(s.label)}" placeholder="Années d'expérience" oninput="cfg.stats[${i}].label=this.value">
+      <button class="del-btn" onclick="cfg.stats.splice(${i},1);renderStatsEdit()">✕</button>
+    </div>`).join('');
+}
+function addStat(){if(!cfg.stats)cfg.stats=[];cfg.stats.push({valeur:'',label:''});renderStatsEdit();}
+
+function renderFaqEdit() {
+  document.getElementById('faqEdit').innerHTML=(cfg.faq||[]).map((f,i)=>`
+    <div class="faq-edit">
+      <div class="faq-edit-header"><span style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim)">Question ${i+1}</span><button class="del-btn" onclick="cfg.faq.splice(${i},1);renderFaqEdit()">✕</button></div>
+      <input value="${esc(f.question)}" placeholder="La question..." oninput="cfg.faq[${i}].question=this.value">
+      <textarea placeholder="La réponse..." oninput="cfg.faq[${i}].reponse=this.value">${esc(f.reponse)}</textarea>
+    </div>`).join('');
+}
+function addFaq(){if(!cfg.faq)cfg.faq=[];cfg.faq.push({question:'',reponse:''});renderFaqEdit();}
+
+function fmt(cmd){document.execCommand(cmd,false,null);document.getElementById('cfg_about').focus();}
+
+async function saveConfig() {
+  cfg.nom_entreprise=document.getElementById('cfg_nom').value;
+  cfg.telephone=document.getElementById('cfg_tel').value;
+  cfg.email=document.getElementById('cfg_email').value;
+  cfg.disponibilites=document.getElementById('cfg_dispo').value;
+  cfg.slogan=document.getElementById('cfg_slogan').value;
+  cfg.description_hero=document.getElementById('cfg_desc_hero').value;
+  cfg.about=document.getElementById('cfg_about').innerHTML;
   try {
-    await fetch(`${API}/admin/site-content`,{method:'PUT',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify(siteContent)});
-    const fb=document.getElementById('saveFeedback');fb.style.display='inline';setTimeout(()=>fb.style.display='none',2500);
+    await apiFetch('/admin/config','PUT',cfg);
+    const fb=document.getElementById('saveFb');fb.style.display='inline';setTimeout(()=>fb.style.display='none',2500);
   } catch{alert('Erreur de sauvegarde.');}
 }
 
 // ─── UTILS ────────────────────────────────────────────────────
-function fmtDate(iso){return new Date(iso).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
-function fmtDateShort(iso){return new Date(iso).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});}
+async function apiFetch(path,method,body) {
+  const res=await fetch(`${API}${path}`,{method,headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify(body)});
+  return res.json();
+}
+function fd(iso){return new Date(iso).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+function fds(iso){return new Date(iso).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body>
